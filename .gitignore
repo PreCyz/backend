@@ -1,0 +1,10 @@
+/gradle/
+/.gradle/
+/bin/
+/build/
+/.nb-gradle/
+/.classpath
+/.project
+/.settings/
+/WebContent/WEB-INF/lib
+.springBeans

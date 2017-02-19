@@ -5,11 +5,11 @@ group = 'backend'
 def artifactName = 'SolBackend'
 version = ''
 
-sourceCompatibility = 1.8 /** kompilujemy w Java 8 */
-compileJava.options.encoding = 'UTF-8' /** Kodowanie plików źródłowych Java */
+sourceCompatibility = 1.8
+compileJava.options.encoding = 'UTF-8'
 
 
-/** konfiguracja pozwalająca na uruchomienie skryptu na maszynie nie posiadającej zainstalowanego gradle */
+/** wrapper configuration */
 task wrapper(type: Wrapper) {
 	gradleVersion = '2.7'
 }
@@ -60,14 +60,6 @@ task checkTomcatHomeSet << {
 compileJava.dependsOn checkTomcatHomeSet
 
 dependencies {
-	/*
-	providedCompile 'org.apache.tomcat:tomcat-jdbc:8.5.0'
-	providedCompile 'org.apache.tomcat:tomcat-catalina:8.5.0'
-	providedCompile 'com.mchange:c3p0:0.9.5.2'
-	providedCompile 'com.oracle:ojdbc14:10.2.0.4.0'
-	providedCompile 'c3p0:c3p0-oracle-thin-extras:0.9.0.2'
-	providedCompile 'org.hsqldb:hsqldb:2.3.3'
-	*/
 
 	providedCompile fileTree(tomcatLibs)
 
@@ -192,12 +184,11 @@ eclipse {
     	component {
     		resource deployPath: '/', sourcePath: '/WebContent'
     	}
-		
 		configureJPAForEclipse()
     }
 }
 
-/** ustawienie kodowania */
+/** setting project encoding */
 eclipseJdt << {
     File f = file('.settings/org.eclipse.core.resources.prefs')
     f.write('eclipse.preferences.version=1\n')
@@ -235,5 +226,5 @@ cleanEclipse << {
 	f.delete()
 }
 
-/** Możemy ustawić by po zbudowaniu foldery tymczasowe były czyszczone */
+/** Clean temporary folders when build is finished. */
 assemble.finalizedBy(clean)

@@ -1,0 +1,47 @@
+package backend.config;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
+
+import backend.service.SessionService;
+import backend.service.impl.AuthenticationService;
+import backend.service.impl.BoxService;
+import backend.service.impl.ExceptionThrowerService;
+import backend.service.impl.SessionServiceImpl;
+
+@Configuration
+public class ServiceConfig {
+	
+	@Autowired
+	private RepositoryConfig repositoryConfig;
+	
+	@Bean
+	@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+	public ExceptionThrowerService exceptionThrowerService() {
+		return new ExceptionThrowerService();
+	}
+	
+	@Bean
+	public SessionService sessionService() {
+		return new SessionServiceImpl();
+	}
+	
+	@Bean
+	public AuthenticationService authenticationService() {
+		AuthenticationService service = new AuthenticationService(exceptionThrowerService());
+		service.setAuthenticationDao(repositoryConfig.authenticationDao());
+		service.setSessionService(sessionService());
+		return service;
+	}
+	
+	@Bean
+	public BoxService boxService() {
+		BoxService boxService = new BoxService(exceptionThrowerService());
+		boxService.setBoxDAO(repositoryConfig.boxDao());
+		return boxService;
+	}
+
+}

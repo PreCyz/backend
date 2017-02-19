@@ -1,0 +1,16 @@
+{
+	"accountsBean":{
+		"uniqueAccounts":[
+				 {
+					"contractNumber":"ZY00041677",
+					 "status":"IN_FORCE",
+					 "addInfo": {
+						 "lastStatusChangeDate":"20151002"
+					 }
+				  }
+		],
+		"FUAAccount":{
+			"contractNumber":"ZY00041677"
+		}
+	}
+}

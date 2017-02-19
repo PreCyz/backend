@@ -1,0 +1,32 @@
+{
+   "id": 3192762,
+   "caseId": "MR_ZY00150797_2011-07",
+   "contractNumber": "ZY00150797",
+   "createDate": 1309471201000,
+   "majorType": "MR",
+   "type": "MR",
+   "clientCode": null,
+   "clientName": null,
+   "eventNumber": null,
+   "transactionNumber": null,
+   "documentId": null,
+   "transaction": null,
+   "transactionDetailsList": null,
+   "transactionChargesList": null,
+   "transactionUnapliedDetailsList": null,
+   "marketingMessage": null,
+   "connectionId": "MR_ZY00150797_2011-07",
+   "connectionInitiator": true,
+   "group": null,
+   "groupUnreadCount": 0,
+   "readed": false,
+   "readedBySecondary": null,
+   "detailsApplied": false,
+   "account": null,
+   "data":    {
+      "report": null,
+      "anniversaryStatus": null,
+      "message": null,
+      "transactionBean": null
+   }
+}

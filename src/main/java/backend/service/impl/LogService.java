@@ -2,7 +2,7 @@ package backend.service.impl;
 
 import java.util.Collection;
 
-import backend.jpa.AutoIncrementEntry;
+import backend.jpa.Entry;
 import backend.jpa.impl.JpaRepository;
 import backend.jpa.newlog.entities.LoggerEvent;
 import backend.jpa.newlog.entities.LoggerLogin;
@@ -24,11 +24,11 @@ public class LogService {
 		jpaService.save(loggerEvent);
 	}
 
-	public void saveEventLogs(Collection<AutoIncrementEntry> collection) {
+	public void saveEventLogs(Collection<Entry> collection) {
 		jpaService.saveCollection(collection);
 	}
 
-	public void saveLogs(Collection<AutoIncrementEntry> collection) {
+	public void saveLogs(Collection<Entry> collection) {
 		jpaService.saveCollection(collection);
 	}
 

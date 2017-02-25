@@ -1,10 +1,11 @@
 package backend.jpa.newlog.entities;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,17 +24,17 @@ public class LoggerLogin extends AutoIncrementEntry implements LazyLoading {
 
 	private static final long serialVersionUID = 6427616661843775840L;
 	
-	@Column(name = "user_login", nullable = false, length = 40)
+	@Column(name = "USER_LOGIN", nullable = false, length = 40)
 	private String userName;
 	
-	@Column(name = "agent_name", nullable = true, length = 100)
+	@Column(name = "AGENT_NAME", nullable = true, length = 100)
 	private String agentName;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "log_date", nullable = false)
-	private Date logDate;
+	@Column(name = "LOG_DATE", nullable = false, columnDefinition = "DATETIME")
+	private Calendar logDate;
 	
-	@OneToMany(mappedBy = "loggerLogin", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy = "loggerLogin", fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private List<LoggerEvent> loggerEvents;
 	
 	public LoggerLogin() {
@@ -44,12 +45,20 @@ public class LoggerLogin extends AutoIncrementEntry implements LazyLoading {
 	public void loadLazy() {
 		getLoggerEvents().size();
 	}
+	
+	public String getUserName() {
+		return userName;
+	}
 
-	public Date getLogDate() {
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
+	public Calendar getLogDate() {
 		return logDate;
 	}
 
-	public void setLogDate(Date logDate) {
+	public void setLogDate(Calendar logDate) {
 		this.logDate = logDate;
 	}
 

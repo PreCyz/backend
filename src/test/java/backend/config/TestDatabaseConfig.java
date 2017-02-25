@@ -27,7 +27,7 @@ public class TestDatabaseConfig extends DatabaseConfig {
 	}
 	
 	private Properties connectionProperties() {
-		try (InputStream resourceAsStream = TestCoreConfig.class.getClassLoader()
+		try (InputStream resourceAsStream =TestCoreConfig.class.getClassLoader()
 				.getResourceAsStream("testDatabase.properties")){
 			Properties connectionProperties = new Properties();
 			connectionProperties.load(resourceAsStream);

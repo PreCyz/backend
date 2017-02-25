@@ -5,7 +5,7 @@ import java.io.UnsupportedEncodingException;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
-@Converter(autoApply=true)
+@Converter(autoApply = false)
 public class BoxMessageResponseConverter implements AttributeConverter<String, byte[]> {
 
 	private static final String UTF_8 = "UTF-8";

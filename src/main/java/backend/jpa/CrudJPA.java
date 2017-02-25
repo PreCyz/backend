@@ -8,9 +8,9 @@ import javax.persistence.EntityManager;
 
 public interface CrudJPA {
 	
-	Collection<? extends AutoIncrementEntry> loadAll(EntityManager entityManager, Class<? extends AutoIncrementEntry> type);
+	Collection<? extends Entry> loadAll(EntityManager entityManager, Class<? extends Entry> type);
 	
-	AutoIncrementEntry find(EntityManager entityManager, AutoIncrementEntry entity);
+	Entry find(EntityManager entityManager, Entry entity);
 	<T> T find(EntityManager entityManager, T type, Object id);
 	
 	<T> T merge(EntityManager entityManager, T type);

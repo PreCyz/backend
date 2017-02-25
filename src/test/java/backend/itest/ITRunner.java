@@ -3,12 +3,13 @@ package backend.itest;
 import org.springframework.context.ApplicationContext;
 
 import backend.jpa.impl.JpaRepository;
+import backend.service.SessionService;
 
-public class IntegrationTestRunner {
+public class ITRunner {
 	
 	private final ApplicationContext applicationContext;
 
-	public IntegrationTestRunner(ApplicationContext applicationContext) {
+	public ITRunner(ApplicationContext applicationContext) {
 		this.applicationContext = applicationContext;
 	}
 
@@ -16,8 +17,11 @@ public class IntegrationTestRunner {
 		crudJPATestIT().executeTests();
 	}
 	
-	private CrudJPATestIT crudJPATestIT() {
-		return new CrudJPATestIT(applicationContext.getBean(JpaRepository.class));
+	private CrudJpaIT crudJPATestIT() {
+		return new CrudJpaIT(
+				applicationContext.getBean(JpaRepository.class),
+				applicationContext.getBean(SessionService.class)
+			);
 	}
 
 }

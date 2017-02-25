@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.concurrent.TimeUnit;
 
-public abstract class AbstractTestIT {
+public abstract class AbstractIT {
 	
 	private static TimeUnit timeUnit = TimeUnit.SECONDS;
 	

@@ -6,14 +6,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.TableGenerator;
 
 @MappedSuperclass
+@TableGenerator(name="tableGenerator", initialValue = 0, allocationSize = 1)
 public class AutoIncrementEntry implements Entry, Serializable {
 	
 	private static final long serialVersionUID = -6893249505923633181L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "tableGenerator")
 	protected Long id;
 	
 	public Long getId() {

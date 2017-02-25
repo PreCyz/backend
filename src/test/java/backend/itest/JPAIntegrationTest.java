@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 
 import backend.jpa.JPAUnitTest;
 
-public class JPAIntegrationTest extends AbstractTestIT {
+public class JPAIntegrationTest extends AbstractIT {
 	
 	private DataSource dataSource;
 	

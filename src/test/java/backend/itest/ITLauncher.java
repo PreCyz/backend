@@ -13,17 +13,17 @@ import backend.config.TestCoreConfig;
 import backend.helper.StringHelper;
 import backend.servlet.Log4jInitServlet;
 
-public class IntegrationTestLauncher {
+public class ITLauncher {
 	
 	public static void main(String[] args) {
 		try {
 			ApplicationContext applicationContext = new AnnotationConfigApplicationContext(TestCoreConfig.class);
-			//setUpLog4j(context);
-			new IntegrationTestRunner(applicationContext).run();
+			//setUpLog4j(applicationContext);
+			new ITRunner(applicationContext).run();
 			System.out.println("INTEGRATION TEST COMPLETED.");
 		} catch(Exception ex){
-			System.err.printf("Error during integral tests. Exception details: %s\n", ex.getMessage());
-			System.out.println("INTEGRATION TEST INCOMPLETE !!!");
+			System.err.printf("Error during integral tests. Exception details: %s%n", ex.getMessage());
+			System.out.println("INTEGRATION TEST STOPED BECAUSE OF ERROR !!!");
 		}
 	}
 	

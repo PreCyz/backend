@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Import;
 	AopConfig.class, 
 	CxfConfig.class, 
 	DatabaseConfig.class,
-	PersistenceContext.class,
+	JpaConfig.class,
 	//LoggingConfig.class,
 	RepositoryConfig.class, 
 	ScheduleConfig.class, 

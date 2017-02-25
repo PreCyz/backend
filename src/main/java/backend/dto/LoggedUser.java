@@ -7,6 +7,9 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class LoggedUser {
 	
 	private String userName;
+	private String password;
+	private String userLogin;
+	private String sessionId;
 
 	public String getUserName() {
 		return userName;
@@ -15,94 +18,29 @@ public class LoggedUser {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-
-	public void setSessionReferenceId(Long savedLogLoginId) {
-		// TODO Auto-generated method stub
-		
+	
+	public String getPassword() {
+		return password;
 	}
 
-	public String getAgentId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String getLicensNo() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String getUserFullName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String getAgentStatus() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String getUserLogin() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void setSessionId(String sessionId) {
-		// TODO Auto-generated method stub
-		
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getSessionId() {
-		// TODO Auto-generated method stub
-		return null;
+		return sessionId;
 	}
 
-	public boolean hasAuthority(String authority) {
-		// TODO Auto-generated method stub
-		return false;
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
 	}
 
-	public boolean hasContractAuthority(String contractNumber, String contractAuthority) {
-		// TODO Auto-generated method stub
-		return false;
+	public String getUserLogin() {
+		return userLogin;
 	}
 
-	public boolean isMaintenanceUser() {
-		// TODO Auto-generated method stub
-		return false;
+	public void setUserLogin(String userLogin) {
+		this.userLogin = userLogin;
 	}
-
-	public String getClientCode() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void setPassword(String string) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void setUserLogin(String string) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void setUserFirstName(String fIRST_NAME) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void setUserSurname(String sURNAME) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public String[] extractNameAndSurname() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void setUserFullName(String format) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }

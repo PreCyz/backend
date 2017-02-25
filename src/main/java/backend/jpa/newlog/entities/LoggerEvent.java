@@ -1,6 +1,6 @@
 package backend.jpa.newlog.entities;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -22,26 +22,34 @@ public class LoggerEvent extends AutoIncrementEntry {
 	private static final long serialVersionUID = 2203669897287893893L;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "log_date", nullable = false)
-	private Date logDate;
+	@Column(name = "LOG_DATE", nullable = false, columnDefinition = "DATETIME")
+	private Calendar logDate;
 	
 	@Column(name = "DETAILS", nullable = false, length = 500)
 	private String eventDetails;
 	
 	@ManyToOne
-	@JoinColumn(name = "LOGGER_LOGIN_ID", nullable = false)
+	@JoinColumn(name = "LOGGER_LOGIN_ID", nullable = false, updatable = true, insertable = true)
 	private LoggerLogin loggerLogin;
 	
 	public LoggerEvent() {
 		super();
 	}
 
-	public Date getLogDate() {
+	public Calendar getLogDate() {
 		return logDate;
 	}
 
-	public void setLogDate(Date logDate) {
+	public void setLogDate(Calendar logDate) {
 		this.logDate = logDate;
+	}
+
+	public LoggerLogin getLoggerLogin() {
+		return loggerLogin;
+	}
+
+	public void setLoggerLogin(LoggerLogin loggerLogin) {
+		this.loggerLogin = loggerLogin;
 	}
 
 	public String getEventDetails() {

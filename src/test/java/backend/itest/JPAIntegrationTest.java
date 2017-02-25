@@ -1,4 +1,4 @@
-package backend.integration.test;
+package backend.itest;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 
 import backend.jpa.JPAUnitTest;
 
-public class JPAIntegrationTest extends AbstractIntegrationTest {
+public class JPAIntegrationTest extends AbstractTestIT {
 	
 	private DataSource dataSource;
 	

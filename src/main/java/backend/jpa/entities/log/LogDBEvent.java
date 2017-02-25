@@ -9,12 +9,11 @@ import javax.persistence.Transient;
 
 import org.eclipse.persistence.annotations.Customizer;
 
-import backend.jpa.Entry;
+import backend.jpa.AutoIncrementEntry;
 import backend.jpa.customizer.LogDBEventCustomizer;
 
-@Entity
 @Customizer(LogDBEventCustomizer.class)
-public final class LogDBEvent extends LogEvent {
+public final class LogDBEvent {
 
 	private static final long serialVersionUID = 8713643790887917978L;
 	
@@ -45,14 +44,6 @@ public final class LogDBEvent extends LogEvent {
 	
 	//is needed for JPA
 	public LogDBEvent() {}
-	
-	public LogDBEvent(String key) {
-		super(key);
-	}
-	
-	public LogDBEvent(String key, String ... parameters) {
-		super(key, parameters);
-	}
 	
 	public Long getSessionRefernceId() {
 		return sessionRefernceId;
@@ -125,22 +116,6 @@ public final class LogDBEvent extends LogEvent {
 			throwableList = new ArrayList<LogThrowable>();
 		}
 		throwableList.add(position, new LogThrowable(throwableMessage, position));
-	}
-	
-	@Override
-	public void update(Entry entry) {
-		super.update(entry);
-		LogDBEvent newEntry = (LogDBEvent) entry;
-		this.daoFunction = newEntry.getDaoFunction();
-		this.fileMethod = newEntry.getFileMethod();
-		this.lineNumber = newEntry.getLineNumber();
-	}
-
-	@Override
-	public String toString() {
-		return "LogDBEvent [sessionRefernceId=" + sessionRefernceId + ", sessionId=" + sessionId + ", daoFunction="
-				+ daoFunction + ", daoFunctionTxt=" + daoFunctionTxt + ", fileMethod=" + fileMethod + ", fileMethodTxt="
-				+ fileMethodTxt + ", lineNumber=" + lineNumber + ", throwableList=" + throwableList + "] " + super.toString();
 	}
 	
 }

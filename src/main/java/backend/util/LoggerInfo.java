@@ -3,8 +3,6 @@ package backend.util;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import backend.jpa.entities.log.LogEvent;
-
 public class LoggerInfo {
 	private static final ThreadLocal<LoggerInfoData> threadLocal = new ThreadLocal<LoggerInfoData>();
 	
@@ -28,28 +26,7 @@ public class LoggerInfo {
 		threadLocal.set(data);
 		return data;
 	}
-	
-	public static void setActualDAOFunction(Class<? extends Object> classType, String functionName) {
-		LoggerInfoData data = initData();
-		String className = classType.getSimpleName();
-		data.className = className;
-		data.function = functionName;
-
-		logger.info(new LogEvent("className.functionName.call", className, functionName));
-//		logger.info(className + "." + functionName + " <- call");
-	}
-	
-	public void setActualDAOFunction(String functionName) {
-		LoggerInfoData data = initData();
-		data.className = className;
-		data.function = functionName;
-
-		threadLocal.set(data);
 		
-		logger.info(new LogEvent("className.functionName.call", className, functionName));
-//		logger.info(className + "." + functionName + " <- call");
-	}
-	
 	public static void setActualULLATaskId(String taskId) {
 		LoggerInfoData data = initData();
 		data.taskId = taskId;

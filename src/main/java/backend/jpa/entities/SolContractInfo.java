@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 import backend.jpa.converters.BooleanToStringConverter;
 
-@Entity
+//@Entity
 @Table(name="SOL_CONTRACT_INFO")
 @NamedQuery(name="SolContractInfo.findAll", query="SELECT s FROM SolContractInfo s")
 @Access(AccessType.FIELD)

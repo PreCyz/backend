@@ -13,8 +13,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import backend.jpa.CrudJPA;
-import backend.jpa.Entry;
-import backend.jpa.entities.log.LogSequenceEntry;
+import backend.jpa.AutoIncrementEntry;
 
 public class CrudJPAImpl implements CrudJPA {
 
@@ -24,24 +23,23 @@ public class CrudJPAImpl implements CrudJPA {
 	}
 
 	@Override
-	public Collection<? extends LogSequenceEntry> loadAll(EntityManager entityManager,
-			Class<? extends LogSequenceEntry> type) {
+	public Collection<? extends AutoIncrementEntry> loadAll(EntityManager entityManager, Class<? extends AutoIncrementEntry> type) {
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Object> criteriaQuery = criteriaBuilder.createQuery();
-		Root<? extends LogSequenceEntry> from = criteriaQuery.from(type);
+		Root<? extends AutoIncrementEntry> from = criteriaQuery.from(type);
 
 		CriteriaQuery<Object> select = criteriaQuery.select(from);
 		TypedQuery<Object> typedQuery = entityManager.createQuery(select);
 		Collection<Object> objectCollection = typedQuery.getResultList();
 
-		Collection<LogSequenceEntry> resultCollection = new LinkedList<>();
-		objectCollection.forEach(obj -> resultCollection.add((LogSequenceEntry) obj));
+		Collection<AutoIncrementEntry> resultCollection = new LinkedList<>();
+		objectCollection.forEach(obj -> resultCollection.add((AutoIncrementEntry) obj));
 
 		return resultCollection;
 	}
 
 	@Override
-	public Entry find(EntityManager entityManager, Entry entity) {
+	public AutoIncrementEntry find(EntityManager entityManager, AutoIncrementEntry entity) {
 		return find(entityManager, entity, entity.getId());
 	}
 

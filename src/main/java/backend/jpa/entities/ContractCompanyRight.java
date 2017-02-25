@@ -5,11 +5,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 
-/**
- * The persistent class for the CONTRACT_COMPANY_RIGHT database table.
- * 
- */
-@Entity
+//@Entity
 @Table(name="CONTRACT_COMPANY_RIGHT")
 @NamedQuery(name="ContractCompanyRight.findAll", query="SELECT c FROM ContractCompanyRight c")
 public class ContractCompanyRight implements Serializable {

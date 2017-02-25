@@ -5,11 +5,7 @@ import javax.persistence.*;
 import java.util.List;
 
 
-/**
- * The persistent class for the CONTRACT_GROUP database table.
- * 
- */
-@Entity
+//@Entity
 @Table(name="CONTRACT_GROUP")
 @NamedQuery(name="ContractGroup.findAll", query="SELECT c FROM ContractGroup c")
 public class ContractGroup implements Serializable {

@@ -1,7 +1,5 @@
 package backend.jpa.entities.log;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,22 +7,20 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.SequenceGenerator;
 
-import backend.jpa.Entry;
-
-@MappedSuperclass
-public abstract class LogSequenceEntry extends Entry {
-	private static final long serialVersionUID = 7987152447354287976L;
+//@MappedSuperclass
+public abstract class LogSequenceEntry {
 	
 	@Id
 	@Column(name="ID")
 	@SequenceGenerator(name="LOG_ENTRY_ID_GENERATOR", sequenceName="LOG_SEQUENCE")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="LOG_ENTRY_ID_GENERATOR")
-	@Access(AccessType.PROPERTY)
+	private Long id;
+	
 	public Long getId() {
-		return super.getId();
+		return id;
 	}
 	public void setId(Long id) {
-		super.setId(id);
+		this.id = id;
 	}
 	@Override
 	public int hashCode() {
@@ -33,6 +29,7 @@ public abstract class LogSequenceEntry extends Entry {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) return true;
@@ -45,8 +42,4 @@ public abstract class LogSequenceEntry extends Entry {
 		return true;
 	}
 	
-	@Override
-	public void update(Entry entry) {
-		super.update(entry);
-	}
 }

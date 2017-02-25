@@ -6,13 +6,11 @@ import java.util.Map;
 
 import javax.persistence.EntityManager;
 
-import backend.jpa.entities.log.LogSequenceEntry;
-
 public interface CrudJPA {
 	
-	Collection<? extends LogSequenceEntry> loadAll(EntityManager entityManager, Class<? extends LogSequenceEntry> type);
+	Collection<? extends AutoIncrementEntry> loadAll(EntityManager entityManager, Class<? extends AutoIncrementEntry> type);
 	
-	Entry find(EntityManager entityManager, Entry entity);
+	AutoIncrementEntry find(EntityManager entityManager, AutoIncrementEntry entity);
 	<T> T find(EntityManager entityManager, T type, Object id);
 	
 	<T> T merge(EntityManager entityManager, T type);

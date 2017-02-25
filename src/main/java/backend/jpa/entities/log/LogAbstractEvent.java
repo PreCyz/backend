@@ -6,9 +6,9 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.helpers.MessageFormatter;
 
 import backend.helper.MessageHelper;
-import backend.jpa.Entry;
+import backend.jpa.AutoIncrementEntry;
 
-public abstract class LogAbstractEvent extends Entry {
+public abstract class LogAbstractEvent extends AutoIncrementEntry {
 	
 	public static final char PARAMS_CONCATENATION_CHAR = '~';
 

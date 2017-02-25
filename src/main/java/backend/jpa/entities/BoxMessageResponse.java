@@ -19,7 +19,7 @@ import backend.jpa.Entry;
 import backend.jpa.SequenceEntry;
 import backend.jpa.converters.BoxMessageResponseConverter;
 
-@Entity
+//@Entity
 @Table(name="BOX_MESSAGE_RESPONSE")
 @NamedQuery(name="BoxMessageResponse.findAll", query="SELECT b FROM BoxMessageResponse b")
 @Access(AccessType.FIELD)
@@ -91,10 +91,7 @@ public class BoxMessageResponse extends SequenceEntry {
 		this.boxMessage = boxMessage;
 	}
 
-	@Override
-	public void loadLazy() {}
-
-	public void update(Entry entry) {
+	public void update(SequenceEntry entry) {
 		super.update(entry);
 		BoxMessageResponse newEntry = (BoxMessageResponse) entry;
 		this.documentId = newEntry.getDocumentId();
@@ -102,6 +99,12 @@ public class BoxMessageResponse extends SequenceEntry {
 		this.message = newEntry.getMessage();
 		this.blobMessage = newEntry.getBlobMessage();
 		this.createDate = newEntry.getCreateDate();
+	}
+
+	@Override
+	public void update(Entry entry) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

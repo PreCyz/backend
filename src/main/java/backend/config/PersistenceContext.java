@@ -30,8 +30,8 @@ public class PersistenceContext {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 
 		EclipseLinkJpaVendorAdapter vendorAdapter = new EclipseLinkJpaVendorAdapter();
-	    vendorAdapter.setGenerateDdl(false);
-	    vendorAdapter.setShowSql(false);
+	    vendorAdapter.setGenerateDdl(true);
+	    vendorAdapter.setShowSql(true);
 	    vendorAdapter.setDatabasePlatform("org.eclipse.persistence.platform.database.MySQLPlatform");
 
 	    LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();

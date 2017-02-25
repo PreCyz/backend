@@ -5,11 +5,7 @@ import javax.persistence.*;
 import java.util.List;
 
 
-/**
- * The persistent class for the COMPANY_RIGHTS database table.
- * 
- */
-@Entity
+//@Entity
 @Table(name="COMPANY_RIGHTS")
 @NamedQuery(name="CompanyRight.findAll", query="SELECT c FROM CompanyRight c")
 public class CompanyRight implements Serializable {

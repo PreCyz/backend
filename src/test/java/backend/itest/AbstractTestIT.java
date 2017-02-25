@@ -1,10 +1,11 @@
-package backend.integration.test;
+package backend.itest;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.concurrent.TimeUnit;
 
-public abstract class AbstractIntegrationTest {
+public abstract class AbstractTestIT {
+	
 	private static TimeUnit timeUnit = TimeUnit.SECONDS;
 	
 	protected abstract void executeTests() throws Exception;
@@ -23,7 +24,6 @@ public abstract class AbstractIntegrationTest {
 			System.out.println(msg);
 		} else {
 			System.err.println(msg);
-			//throw new RuntimeException(msg);
 		}
 	}
 	

@@ -2,9 +2,9 @@ package backend.dto;
 
 import java.util.Date;
 
-import backend.jpa.Entry;
+import backend.jpa.AutoIncrementEntry;
 
-public class MarketingMessageStatus extends Entry {
+public class MarketingMessageStatus extends AutoIncrementEntry {
 
 	private static final long serialVersionUID = 2066240271784234614L;
 	
@@ -54,7 +54,4 @@ public class MarketingMessageStatus extends Entry {
 		this.onlyForContract = onlyForContract;
 	}
 
-	@Override
-	public void loadLazy() {}
-	
 }

@@ -6,9 +6,9 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlTransient;
 
-import backend.jpa.Entry;
+import backend.jpa.AutoIncrementEntry;
 
-public class MarketingMessage extends Entry {
+public class MarketingMessage extends AutoIncrementEntry {
 
 	private static final long serialVersionUID = -7871861150593326300L;
 	
@@ -180,13 +180,6 @@ public class MarketingMessage extends Entry {
 		}
 		
 		return sb.toString();
-	}
-
-	@Override
-	public void loadLazy() {
-		if (getContracts() != null) {
-			getContracts().size();
-		}
 	}
 	
 }

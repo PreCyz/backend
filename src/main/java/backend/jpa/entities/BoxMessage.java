@@ -25,7 +25,7 @@ import backend.jpa.Entry;
 import backend.jpa.SequenceEntry;
 
 @JsonRootName(value="boxMessage")
-@Entity
+//@Entity
 @Table(name="BOX_MESSAGE")
 @NamedQueries({
 	@NamedQuery(name="BoxMessage.findAll", query="SELECT b FROM BoxMessage b"),
@@ -222,9 +222,6 @@ public class BoxMessage extends SequenceEntry {
 	public void setBoxMessageResponse(BoxMessageResponse boxMessageResponse) {
 		this.boxMessageResponse = boxMessageResponse;
 	}
-	
-	@Override
-	public void loadLazy() {}
 
 	@Override
 	public String toString() {
@@ -242,7 +239,7 @@ public class BoxMessage extends SequenceEntry {
 				+ "]";
 	}
 	@Override
-	public void update(Entry entry) {
+	public void update(SequenceEntry  entry) {
 		super.update(entry);
 		BoxMessage newEntry = (BoxMessage) entry;
 		this.caseId = newEntry.getCaseId();
@@ -255,6 +252,11 @@ public class BoxMessage extends SequenceEntry {
 		this.eventNumber = newEntry.getEventNumber();
 		this.transactionNumber = newEntry.getTransactionNumber();
 		this.documentId = newEntry.getDocumentId();
+	}
+	@Override
+	public void update(Entry entry) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

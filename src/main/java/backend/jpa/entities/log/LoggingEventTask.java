@@ -1,7 +1,5 @@
 package backend.jpa.entities.log;
 
-import backend.jpa.Entry;
-
 public class LoggingEventTask extends LogSequenceEntry {
 	
 	private static final long serialVersionUID = -1609118027087562859L;
@@ -25,12 +23,4 @@ public class LoggingEventTask extends LogSequenceEntry {
 		return "DEBUG";
 	}
 	
-	@Override
-	public void update(Entry entry) {}
-	
-	@Override
-	public void loadLazy() {
-		// TODO Auto-generated method stub
-		
-	}
 }

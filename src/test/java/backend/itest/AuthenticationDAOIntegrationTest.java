@@ -1,4 +1,4 @@
-package backend.integration.test;
+package backend.itest;
 
 import backend.dao.AuthenticationDAO;
 import backend.dto.LoggedUser;
@@ -7,7 +7,7 @@ import backend.dto.LoginMode;
 import backend.helper.StringHelper;
 
 
-public class AuthenticationDAOIntegrationTest extends AbstractIntegrationTest {
+public class AuthenticationDAOIntegrationTest extends AbstractTestIT {
 	
 	private AuthenticationDAO dao;
 	public AuthenticationDAOIntegrationTest(AuthenticationDAO dao) {

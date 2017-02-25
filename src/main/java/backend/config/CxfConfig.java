@@ -44,10 +44,10 @@ public class CxfConfig {
 	private ServiceConfig serviceConfig;
 	
 	@Bean(destroyMethod = "shutdown")
-    public SpringBus springBus() {
+	public SpringBus springBus() {
 		setupCxfBus();
-        return (SpringBus) cxfBus;
-    }
+		return (SpringBus) cxfBus;
+	}
 	
 	private void setupCxfBus() {
 		cxfBus.getInInterceptors().add(new LoggingInInterceptor());
@@ -62,13 +62,13 @@ public class CxfConfig {
 	}
 	
 	@Bean
-    @DependsOn("springBus")
-    public Endpoint wsFacade() {
-        EndpointImpl endpoint = new EndpointImpl(springBus(), webServiceFacade());
-        endpoint.setAddress("/WebService");
-        endpoint.publish();
-        return endpoint;
-    }
+	@DependsOn("springBus")
+	public Endpoint wsFacade() {
+		EndpointImpl endpoint = new EndpointImpl(springBus(), webServiceFacade());
+		endpoint.setAddress("/WebService");
+		endpoint.publish();
+		return endpoint;
+	}
 	
 	//REST config start
 	@Bean
@@ -88,39 +88,39 @@ public class CxfConfig {
 		return new DAOExceptionMapper(); 
 	}
 	
-    @Bean
-    @DependsOn("springBus")
-    public Server jaxRsServer(ApplicationContext appContext) {
-        JAXRSServerFactoryBean factory = RuntimeDelegate
-        		.getInstance()
-        		.createEndpoint(jaxRsApiApplication(), JAXRSServerFactoryBean.class);
-        factory.setServiceBeans(Arrays.asList(restFacade()));
-        factory.setAddress(factory.getAddress());
-        factory.setProviders(Arrays.asList(jsonProvider(), daoExceptionMapper()));
-        factory.setExtensionMappings(extensionMappings());
-        factory.setOutFaultInterceptors(Arrays.asList(errorHandlerInterceptor()));
-        factory.setBus(springBus());
-        return factory.create();
-    }
-    
-    private Map<Object, Object> extensionMappings() {
-    	Map<Object, Object> map = new HashMap<>();
-    	map.put("xml", MediaType.APPLICATION_ATOM_XML);
-    	map.put("json", MediaType.APPLICATION_JSON);
-    	return map;
-    }
-    
-    @ApplicationPath(value = "")
-    public class JaxRsApiApplication extends Application { }
+	@Bean
+	@DependsOn("springBus")
+	public Server jaxRsServer(ApplicationContext appContext) {
+		JAXRSServerFactoryBean factory = RuntimeDelegate
+				.getInstance()
+				.createEndpoint(jaxRsApiApplication(), JAXRSServerFactoryBean.class);
+		factory.setServiceBeans(Arrays.asList(restFacade()));
+		factory.setAddress(factory.getAddress());
+		factory.setProviders(Arrays.asList(jsonProvider(), daoExceptionMapper()));
+		factory.setExtensionMappings(extensionMappings());
+		factory.setOutFaultInterceptors(Arrays.asList(errorHandlerInterceptor()));
+		factory.setBus(springBus());
+		return factory.create();
+	}
+	
+	private Map<Object, Object> extensionMappings() {
+		Map<Object, Object> map = new HashMap<>();
+		map.put("xml", MediaType.APPLICATION_ATOM_XML);
+		map.put("json", MediaType.APPLICATION_JSON);
+		return map;
+	}
+	
+	@ApplicationPath(value = "")
+	public class JaxRsApiApplication extends Application { }
  
-    @Bean
-    public JaxRsApiApplication jaxRsApiApplication() {
-        return new JaxRsApiApplication();
-    }
+	@Bean
+	public JaxRsApiApplication jaxRsApiApplication() {
+		return new JaxRsApiApplication();
+	}
  
-    @Bean
-    public JacksonJsonProvider jsonProvider() {
-        return new JacksonJsonProvider();
-    }
+	@Bean
+	public JacksonJsonProvider jsonProvider() {
+		return new JacksonJsonProvider();
+	}
 
 }

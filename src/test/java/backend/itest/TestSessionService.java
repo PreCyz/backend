@@ -1,4 +1,4 @@
-package backend.integration.test;
+package backend.itest;
 
 import java.util.HashMap;
 import java.util.Map;

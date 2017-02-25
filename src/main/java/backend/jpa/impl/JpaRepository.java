@@ -12,9 +12,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import backend.jpa.AutoIncrementEntry;
 import backend.jpa.CrudJPA;
 import backend.jpa.Entry;
-import backend.jpa.entities.log.LogSequenceEntry;
 
 public class JpaRepository {
 
@@ -57,12 +57,12 @@ public class JpaRepository {
 	}
 
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public void saveCollection(Collection<LogSequenceEntry> collection) {
+	public void saveCollection(Collection<AutoIncrementEntry> collection) {
 		collection.stream().forEach(log -> save(log));
 	}
 
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public void delete(Entry entity) {
+	public void delete(AutoIncrementEntry entity) {
 		delete(entity, entity.getId());
 	}
 	
@@ -74,7 +74,7 @@ public class JpaRepository {
 		}
 	}
 
-	public Collection<? extends LogSequenceEntry> loadAll(Class<? extends LogSequenceEntry> type) {
+	public Collection<? extends AutoIncrementEntry> loadAll(Class<? extends AutoIncrementEntry> type) {
 		return crudJpa.loadAll(entityManager, type);
 	}
 

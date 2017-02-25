@@ -1,4 +1,4 @@
-package backend.integration;
+package backend.itest;
 
 import static backend.AbstractUnitTest.TEST_LOGGING_APPENDER;
 
@@ -7,8 +7,9 @@ import java.util.Properties;
 
 import org.apache.log4j.PropertyConfigurator;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import backend.config.TestCoreConfig;
 import backend.helper.StringHelper;
 import backend.servlet.Log4jInitServlet;
 
@@ -16,9 +17,10 @@ public class IntegrationTestLauncher {
 	
 	public static void main(String[] args) {
 		try {
-			ApplicationContext context = new ClassPathXmlApplicationContext("classpath:/META-INF/test-spring-config.xml");
-			setUpLog4j(context);
-			new IntegrationTestRunner(context).run();
+			ApplicationContext applicationContext = new AnnotationConfigApplicationContext(TestCoreConfig.class);
+			//setUpLog4j(context);
+			new IntegrationTestRunner(applicationContext).run();
+			System.out.println("INTEGRATION TEST COMPLETED.");
 		} catch(Exception ex){
 			System.err.printf("Error during integral tests. Exception details: %s\n", ex.getMessage());
 			System.out.println("INTEGRATION TEST INCOMPLETE !!!");

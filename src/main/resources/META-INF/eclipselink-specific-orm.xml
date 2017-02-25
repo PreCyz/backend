@@ -10,18 +10,13 @@
 		</persistence-unit-defaults>
 	</persistence-unit-metadata>
 	
-	<entity class="backend.jpa.entities.log.LogDBEvent">
+	<!-- <entity class="backend.jpa.entities.log.LogDBEvent">
 		<customizer class="backend.jpa.customizer.LogDBEventCustomizer"/>
 	</entity>
 	
 	<entity class="backend.jpa.entities.log.LogSQLEvent">
 		<customizer class="backend.jpa.customizer.LogSQLEventCustomizer"/>
-	</entity>
-	
-	<entity class="backend.jpa.entities.log.LogEvent">
-		<customizer class="backend.jpa.customizer.LogDBEventCustomizer"/>
-		<class-extractor class="backend.jpa.extractor.LogEventClassExtractor"/>
-	</entity>
+	</entity> -->
 	
 	<named-native-query name="getPhAndLA" result-set-mapping="ResultBean">
 		<query>SELECT phcode AS result, lacode AS result2 FROM contractinfo WHERE contractno = ?</query>

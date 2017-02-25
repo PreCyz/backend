@@ -11,7 +11,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-@Entity
+//@Entity
 @Table(name="LOG_THROWABLE")
 @NamedQuery(name="LogThrowable.findAll", query="SELECT l FROM LogThrowable l")
 public class LogThrowable implements Serializable {

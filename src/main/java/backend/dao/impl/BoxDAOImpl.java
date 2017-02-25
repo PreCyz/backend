@@ -24,7 +24,6 @@ import backend.dao.GeneralDAO;
 import backend.exception.DAOException;
 import backend.jpa.entities.BoxMessage;
 import backend.jpa.entities.BoxMessageResponse;
-import backend.jpa.entities.log.LogSQLEvent;
 import backend.util.BackendConstants;
 import backend.util.TimeService;
 
@@ -57,14 +56,6 @@ public class BoxDAOImpl extends GeneralDAO implements BoxDAO {
 
 	private Long saveFullyPreparedMessage(BoxMessage message) {
 		try {
-			if (logger.isDebugEnabled()) {
-				final String sqlQuery = "insert into BOX_MESSAGE " +
-						"(ID, CASE_ID, CONTRACTNO, CREATE_DATE, MAJOR_TYPE, MESS_TYPE, CLIENT_CODE, " +
-						"CLIENT_NAME, EVENT_NUMBER, TRANSACTION_NUMBER, DOCUMENT_ID, XML_DATA) " +
-						"values (hibernate_sequence.nextval,?,?,?,?,?,?,?,?,?,?,?)";
-				logger.debug(new LogSQLEvent(sqlQuery, message.getCaseId(), message.getContractNumber(), ""+message.getCreateDate(),
-						message.getMajorType(), message.getType(), message.getClientCode(), message.getClientName() ,"<blob>"));
-			}
 		
 			jpaRepository.save(message);
 			
@@ -92,14 +83,6 @@ public class BoxDAOImpl extends GeneralDAO implements BoxDAO {
 	public void updateMessageData(BoxMessage message) {
 		try {			
 
-			if (logger.isDebugEnabled()) {
-				final String sqlQuery = "update BOX_MESSAGE " +
-						"set CREATE_DATE = ?, EVENT_NUMBER = ?, TRANSACTION_NUMBER = ?, DOCUMENT_ID = ?, XML_DATA =? " +
-						"where ID = ?";
-				logger.debug(new LogSQLEvent(sqlQuery, message.getCaseId(), message.getContractNumber(), ""+message.getCreateDate(),
-						message.getMajorType(), message.getType(), message.getClientCode(), message.getClientName() ,"<blob>"));
-			}
-		
 			jpaRepository.save(message);
 			
 		} catch (Exception e) {

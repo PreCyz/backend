@@ -13,16 +13,13 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.helpers.MessageFormatter;
 
 import backend.helper.MessageHelper;
-import backend.jpa.Entry;
 
-@MappedSuperclass
+//@MappedSuperclass
 @Access(AccessType.FIELD)
 public class LogAbstract extends LogSequenceEntry {
 	
 	public static final char PARAMS_CONCATENATION_CHAR = '~';
 
-	private static final long serialVersionUID = 7460552191622310799L;
-	
 	@Transient
 	protected String messageBase;
 	@Transient
@@ -119,18 +116,10 @@ public class LogAbstract extends LogSequenceEntry {
 		event.logDate = this.logDate;
 	}
 	
-	@Override
-	public void update(Entry entry) {
-		super.update(entry);
+	public void update(LogSequenceEntry entry) {
 		LogAbstract newEntry = (LogAbstract) entry;
 		this.msgTemplate = newEntry.getMsgTemplate();
 		this.messageParams = newEntry.getMessageParams();
 		this.logDate = newEntry.getLogDate();
-	}
-
-	@Override
-	public void loadLazy() {
-		// TODO Auto-generated method stub
-		
 	}
 }

@@ -1,8 +1,6 @@
 package backend.dao;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.mockito.Mockito.when;
 
 import org.junit.After;
 import org.junit.Before;
@@ -26,12 +24,6 @@ public class LogDAOImplUnitTest {
 	@After
 	public void tearDown() throws Exception {
 		mockService = null;
-	}
-
-	@Test
-	public void givenMockDaoAndNullLogLoginWhenSaveLogLoginThenReturnIdOfNewRecord() {
-		when(mockService.saveLogLogin(null)).thenReturn(0L);
-		assertTrue(0 == mockService.saveLogLogin(null));
 	}
 
 	@Test

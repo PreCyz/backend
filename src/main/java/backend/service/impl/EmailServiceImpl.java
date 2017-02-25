@@ -24,10 +24,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import backend.exception.DAOException;
-import backend.helper.StringHelper;
-import backend.jpa.entities.log.LogEvent;
 import backend.service.EmailService;
-import backend.util.BackendConstants;
 
 public class EmailServiceImpl implements EmailService {
 	
@@ -52,17 +49,7 @@ public class EmailServiceImpl implements EmailService {
 	}
 	
 	public void sendEmail(String subject, String content, String[] to, String[] cc, String[] bcc, File[] files, String[] fileNames) {
-		sendEmail(subject, content, to, cc, bcc, files, fileNames, true);
-	}
-	
-	/** Umożliwia przekazanie, że nie logować wysłania maila. Uzywać tylko do monitoringu. */
-	@Deprecated
-	public void sendEmail(String subject, String content, String[] to, String[] cc, String[] bcc, File[] files, String[] fileNames, boolean logSending) {
 		try {
-			if (logSending) {
-				logger.info(new LogEvent("email.sending", to[0], cc[0], bcc[0]));
-				logEmailContent(subject, content, fileNames);
-			}
 			
 			Properties mailProps = new Properties();
 			mailProps.setProperty("mail.smtp.host", smtpHost);
@@ -108,9 +95,7 @@ public class EmailServiceImpl implements EmailService {
 			
 			Transport.send(msg);
 			
-			if (logSending) {
-				logger.info(new LogEvent("email.sent"));
-			}
+			
 		} catch (Exception e) {
 			logger.error("Error sending message to " + to[0], e);
 			throw new DAOException("Error sending message to " + to[0], e);
@@ -131,16 +116,4 @@ public class EmailServiceImpl implements EmailService {
 		return addresses;
 	}
 	
-	private static void logEmailContent(String subject, String content, String[] fileNames) {
-		String filesString = fileNames[0];
-		int contentAvailableSize = BackendConstants.LOG_MAX_DATA_SIZE - subject.length() - filesString.length();
-		
-		logger.info(new LogEvent("email.content", subject, filesString, StringHelper.safeSubString(content, 0, contentAvailableSize)));
-
-		content = StringHelper.safeSubString(content, contentAvailableSize, content.length());
-		while (content.length() > 0) {
-			logger.info(new LogEvent("email.content.continuation", StringHelper.safeSubString(content, 0, BackendConstants.LOG_MAX_DATA_SIZE)));
-			content = StringHelper.safeSubString(content, BackendConstants.LOG_MAX_DATA_SIZE, content.length());
-		}
-	}
 }

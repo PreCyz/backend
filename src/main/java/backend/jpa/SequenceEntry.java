@@ -1,7 +1,7 @@
 package backend.jpa;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
+import java.io.Serializable;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,21 +9,21 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.SequenceGenerator;
 
 @MappedSuperclass
-public abstract class SequenceEntry extends Entry {
+public abstract class SequenceEntry implements Entry, Serializable {
+	
 	private static final long serialVersionUID = 7719134198391161976L;
 	
 	@Id
 	@SequenceGenerator(name="ENTRY_ID_GENERATOR", sequenceName="SEQUENCE_NAME")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ENTRY_ID_GENERATOR")
-	@Access(AccessType.PROPERTY)
+	protected Long id;
+	
 	public Long getId() {
-		return super.getId();
+		return id;
 	}
 	public void setId(Long id) {
-		super.setId(id);
+		this.id = id;
 	}
-
-	public abstract void loadLazy();
 	
 	@Override
 	public int hashCode() {
@@ -44,8 +44,7 @@ public abstract class SequenceEntry extends Entry {
 		return true;
 	}
 	
-	@Override
-	public void update(Entry entry) {
-		super.update(entry);
+	public void update(SequenceEntry entry) {
+		this.id = entry.getId();
 	}
 }

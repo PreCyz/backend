@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import backend.exception.DAOException;
 import backend.helper.StringHelper;
-import backend.integration.test.TestSessionService;
+import backend.itest.TestSessionService;
 import backend.service.SessionService;
 import backend.servlet.Log4jInitServlet;
 

@@ -11,12 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-
-/**
- * The persistent class for the GROUP_ROLE database table.
- * 
- */
-@Entity
+//@Entity
 @Table(name="GROUP_ROLE")
 @NamedQuery(name="GroupRole.findAll", query="SELECT g FROM GroupRole g")
 public class GroupRole implements Serializable {

@@ -10,17 +10,9 @@
 		<mapping-file>META-INF/eclipselink-specific-orm.xml</mapping-file>
 		<mapping-file>META-INF/jpa-converters.xml</mapping-file>
 		
-		<class>backend.jpa.entities.BoxMessage</class>
+		<!-- <class>backend.jpa.entities.BoxMessage</class>
 		<class>backend.jpa.entities.BoxMessageResponse</class>
 		<class>backend.jpa.entities.SolContractInfo</class>
-		
-		
-		<class>backend.jpa.entities.log.LogLogin</class>
-		<class>backend.jpa.entities.log.LogEvent</class>
-		<class>backend.jpa.entities.log.LogDBEvent</class>
-		<class>backend.jpa.entities.log.LogSQLEvent</class>
-		<class>backend.jpa.SequenceEntry</class>
-		<class>backend.jpa.AutoIncrementEntry</class>
 		<class>backend.jpa.entities.log.LogAbstract</class>
 		<class>backend.jpa.entities.log.LogSequenceEntry</class>
 		<class>backend.jpa.entities.log.LogThrowable</class>
@@ -29,9 +21,12 @@
 		<class>backend.jpa.entities.ContractGroup</class>
 		<class>backend.jpa.entities.ContractRole</class>
 		<class>backend.jpa.entities.Group</class>
-		<class>backend.jpa.entities.GroupRole</class>
+		<class>backend.jpa.entities.GroupRole</class> -->
 		
-		
+		<class>backend.jpa.SequenceEntry</class>
+		<class>backend.jpa.AutoIncrementEntry</class>
+		<class>backend.jpa.newlog.entities.LoggerEvent</class>
+		<class>backend.jpa.newlog.entities.LoggerLogin</class>
 		
 	</persistence-unit>
 	

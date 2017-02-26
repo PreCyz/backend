@@ -2,7 +2,7 @@ package backend.exception;
 
 import java.io.Serializable;
 
-public class ApplicationCheckedException extends RuntimeException implements Serializable {
+public class ApplicationCheckedException extends Exception implements Serializable {
 
     private static final long serialVersionUID = -5966684352181072896L;
 

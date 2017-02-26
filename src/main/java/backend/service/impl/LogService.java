@@ -3,33 +3,38 @@ package backend.service.impl;
 import java.util.Collection;
 
 import backend.jpa.Entry;
-import backend.jpa.entity.log.LogEvent;
 import backend.jpa.entity.log.LogLogin;
 import backend.jpa.impl.JpaRepository;
+import backend.service.SessionService;
 
 public class LogService {
 	
-	private final JpaRepository jpaService;
+	private final JpaRepository jpaRepository;
+	private SessionService sessionService;
 
 	public LogService(JpaRepository jpaService) {
-		this.jpaService = jpaService;
+		this.jpaRepository = jpaService;
+	}
+	
+	public void setSessionService(SessionService sessionService) {
+		this.sessionService = sessionService;
 	}
 
-	public Long saveLoggerLogin(LogLogin logLogin) {
-		jpaService.save(logLogin);
-		return logLogin.getId();
+	public Collection<Entry> saveLogs(Collection<Entry> collection) {
+		jpaRepository.saveCollection(collection);
+		return collection;
 	}
 
-	public void saveLoggerEvent(LogEvent logEvent) {
-		jpaService.save(logEvent);
+	public Entry saveLog(Entry entry) {
+		jpaRepository.save(entry);
+		addLogLoginIdToSession(entry);
+		return entry;
 	}
-
-	public void saveEventLogs(Collection<Entry> collection) {
-		jpaService.saveCollection(collection);
-	}
-
-	public void saveLogs(Collection<Entry> collection) {
-		jpaService.saveCollection(collection);
+	
+	private void addLogLoginIdToSession(Entry entry) {
+		if (entry instanceof LogLogin) {
+			sessionService.addLogLoginId(entry.getId());
+		}
 	}
 
 }

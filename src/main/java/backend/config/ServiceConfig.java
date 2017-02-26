@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Scope;
 import backend.service.SessionService;
 import backend.service.impl.AuthenticationService;
 import backend.service.impl.ExceptionThrowerService;
+import backend.service.impl.LogService;
 import backend.service.impl.SessionServiceImpl;
 
 @Configuration
@@ -26,6 +27,13 @@ public class ServiceConfig {
 	@Bean
 	public SessionService sessionService() {
 		return new SessionServiceImpl();
+	}
+	
+	@Bean
+	public LogService logService() {
+		LogService logService = new LogService(repositoryConfig.jpaRepository());
+		logService.setSessionService(sessionService());
+		return logService;
 	}
 	
 	@Bean

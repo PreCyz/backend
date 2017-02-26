@@ -22,21 +22,6 @@ import backend.dao.GeneralDAO;
 import backend.exception.ApplicationUncheckedException;
 
 public class BoxDAOImpl extends GeneralDAO implements BoxDAO {
-
-	private static final Map<String, String> codes = new HashMap<String, String>();
-	static {
-		codes.put("offer", "657");
-		codes.put("contract", "658");
-		codes.put("premiums", "659");
-		codes.put("dispositions", "660");
-		codes.put("channels", "661");
-		codes.put("complaint", "783");
-
-		codes.put("payments_partialSurrender", "662");
-		codes.put("payments_fullSurrender", "663");
-		codes.put("payments_maturity", "664");
-		codes.put("payments_death", "665");
-	}
 	
 	@Override
 	public String sendClientQuestion(String contractNumber, String type, String message) {

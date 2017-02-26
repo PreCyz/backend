@@ -2,7 +2,7 @@ package backend.dto;
 
 import java.util.Date;
 
-import backend.jpa.entities.BoxMessage;
+import backend.jpa.entity.BoxMessage;
 
 public class BoxDetails {
 	

@@ -5,7 +5,7 @@ import org.eclipse.persistence.descriptors.ClassDescriptor;
 import org.eclipse.persistence.expressions.Expression;
 import org.eclipse.persistence.expressions.ExpressionBuilder;
 
-import backend.jpa.entities.log.LogSQLEvent;
+import backend.jpa.entity.log.LogSQLEvent;
 
 public class LogDBEventCustomizer implements DescriptorCustomizer {
 

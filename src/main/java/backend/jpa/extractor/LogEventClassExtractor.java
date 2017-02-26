@@ -5,8 +5,8 @@ import org.eclipse.persistence.sessions.Record;
 import org.eclipse.persistence.sessions.Session;
 
 import backend.helper.StringHelper;
-import backend.jpa.entities.log.LogDBEvent;
-import backend.jpa.entities.log.LogSQLEvent;
+import backend.jpa.entity.log.LogDBEvent;
+import backend.jpa.entity.log.LogSQLEvent;
 
 public class LogEventClassExtractor extends ClassExtractor {
 

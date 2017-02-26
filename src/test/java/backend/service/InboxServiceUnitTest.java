@@ -18,7 +18,7 @@ import backend.AbstractUnitTest;
 import backend.dto.BoxMessages;
 import backend.dto.InboxDetails;
 import backend.exception.DAOException;
-import backend.jpa.entities.BoxMessage;
+import backend.jpa.entity.BoxMessage;
 import backend.service.impl.InboxService;
 
 public class InboxServiceUnitTest extends AbstractUnitTest {

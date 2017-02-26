@@ -25,8 +25,8 @@
 		
 		<class>backend.jpa.SequenceEntry</class>
 		<class>backend.jpa.AutoIncrementEntry</class>
-		<class>backend.jpa.newlog.entities.LoggerEvent</class>
-		<class>backend.jpa.newlog.entities.LoggerLogin</class>
+		<class>backend.jpa.newlog.entity.LoggerEvent</class>
+		<class>backend.jpa.newlog.entity.LoggerLogin</class>
 		
 	</persistence-unit>
 	

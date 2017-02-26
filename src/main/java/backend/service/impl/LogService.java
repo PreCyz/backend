@@ -4,8 +4,8 @@ import java.util.Collection;
 
 import backend.jpa.Entry;
 import backend.jpa.impl.JpaRepository;
-import backend.jpa.newlog.entities.LoggerEvent;
-import backend.jpa.newlog.entities.LoggerLogin;
+import backend.jpa.newlog.entity.LoggerEvent;
+import backend.jpa.newlog.entity.LoggerLogin;
 
 public class LogService {
 	

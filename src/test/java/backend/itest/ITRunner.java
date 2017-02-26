@@ -2,6 +2,7 @@ package backend.itest;
 
 import org.springframework.context.ApplicationContext;
 
+import backend.itest.impl.CrudJpaIT;
 import backend.jpa.impl.JpaRepository;
 import backend.service.SessionService;
 
@@ -14,7 +15,7 @@ public class ITRunner {
 	}
 
 	public void run() throws Exception {
-		crudJPATestIT().executeTests();
+		crudJPATestIT().run();
 	}
 	
 	private CrudJpaIT crudJPATestIT() {

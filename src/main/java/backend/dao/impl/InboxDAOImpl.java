@@ -7,7 +7,7 @@ import backend.dao.BoxDAO;
 import backend.dao.GeneralDAO;
 import backend.dao.InboxDAO;
 import backend.dto.BoxMessages;
-import backend.jpa.entities.BoxMessage;
+import backend.jpa.entity.BoxMessage;
 
 public class InboxDAOImpl extends GeneralDAO implements InboxDAO {
 	

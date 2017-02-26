@@ -20,8 +20,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import backend.AbstractUnitTest;
 import backend.dto.BoxDetails;
 import backend.exception.DAOException;
-import backend.jpa.entities.BoxMessage;
-import backend.jpa.entities.BoxMessageResponse;
+import backend.jpa.entity.BoxMessage;
+import backend.jpa.entity.BoxMessageResponse;
 import backend.service.impl.BoxService;
 
 public class BoxServiceUnitTest extends AbstractUnitTest{

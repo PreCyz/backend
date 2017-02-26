@@ -18,7 +18,7 @@ import org.mockito.MockitoAnnotations;
 import backend.AbstractUnitTest;
 import backend.jpa.AutoIncrementEntry;
 import backend.jpa.CrudJPA;
-import backend.jpa.newlog.entities.LoggerLogin;
+import backend.jpa.newlog.entity.LoggerLogin;
 
 public class CrudJPAImplUnitTest extends AbstractUnitTest {
 	

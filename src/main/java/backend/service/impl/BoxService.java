@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 import backend.annotation.SecurityGuard;
 import backend.dao.BoxDAO;
 import backend.dto.BoxDetails;
-import backend.jpa.entities.BoxMessage;
-import backend.jpa.entities.BoxMessageResponse;
+import backend.jpa.entity.BoxMessage;
+import backend.jpa.entity.BoxMessageResponse;
 import backend.service.AbstractService;
 import backend.service.SessionService;
 

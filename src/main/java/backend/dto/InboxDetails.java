@@ -1,7 +1,7 @@
 package backend.dto;
 
 
-import backend.jpa.entities.BoxMessage;
+import backend.jpa.entity.BoxMessage;
 
 public class InboxDetails {
 	

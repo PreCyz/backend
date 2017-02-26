@@ -6,7 +6,7 @@ import backend.annotation.SecurityGuard;
 import backend.dao.InboxDAO;
 import backend.dto.BoxMessages;
 import backend.dto.InboxDetails;
-import backend.jpa.entities.BoxMessage;
+import backend.jpa.entity.BoxMessage;
 import backend.service.AbstractService;
 
 public class InboxService extends AbstractService {

@@ -19,8 +19,8 @@ import org.mockito.MockitoAnnotations;
 
 import backend.AbstractUnitTest;
 import backend.dao.BoxDAO;
-import backend.jpa.entities.BoxMessage;
-import backend.jpa.entities.BoxMessageResponse;
+import backend.jpa.entity.BoxMessage;
+import backend.jpa.entity.BoxMessageResponse;
 
 public class BoxDAOImplUnitTest extends AbstractUnitTest {
 

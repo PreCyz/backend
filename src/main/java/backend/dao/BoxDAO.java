@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import backend.jpa.entities.BoxMessage;
-import backend.jpa.entities.BoxMessageResponse;
+import backend.jpa.entity.BoxMessage;
+import backend.jpa.entity.BoxMessageResponse;
 
 public interface BoxDAO {
 

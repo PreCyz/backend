@@ -22,8 +22,8 @@ import javax.persistence.criteria.Root;
 import backend.dao.BoxDAO;
 import backend.dao.GeneralDAO;
 import backend.exception.DAOException;
-import backend.jpa.entities.BoxMessage;
-import backend.jpa.entities.BoxMessageResponse;
+import backend.jpa.entity.BoxMessage;
+import backend.jpa.entity.BoxMessageResponse;
 import backend.util.BackendConstants;
 import backend.util.TimeService;
 

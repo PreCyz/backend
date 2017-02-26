@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
 
-import backend.jpa.entities.BoxMessage;
+import backend.jpa.entity.BoxMessage;
 
 @JsonRootName(value="messages")
 public class BoxMessages implements Serializable {

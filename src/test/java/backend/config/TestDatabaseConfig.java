@@ -14,7 +14,20 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 @Configuration(value = "databaseConfig")
 public class TestDatabaseConfig extends DatabaseConfig {
 	
-	@Bean(name = "mySqlDataSource")
+	@Override
+	@Bean 
+	public boolean generateDdl() {
+		return true;
+	}
+	
+	@Override
+	@Bean
+	public boolean showSql() {
+		return false;
+	}
+	
+	@Override
+	@Bean
 	@Required
 	public DataSource mySqlDataSource() {
 		Properties connectionProperties = connectionProperties();

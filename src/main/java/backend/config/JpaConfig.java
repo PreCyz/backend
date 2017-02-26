@@ -3,7 +3,6 @@ package backend.config;
 import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -24,14 +23,14 @@ import backend.jpa.impl.CrudJPAImpl;
 public class JpaConfig {
 	
 	@Autowired
-	private DataSource mySqlDataSource;
+	private DatabaseConfig databaseConfig;
 	
 	@Bean
 	@DependsOn(value = "mySqlDataSource")
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 	    LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 	    factory.setJpaVendorAdapter(jpaVendorAdapter());
-	    factory.setDataSource(mySqlDataSource);
+	    factory.setDataSource(databaseConfig.mySqlDataSource());
 	    factory.setJpaProperties(jpaProperties());
 	    factory.setPackagesToScan("backend");
 	    //factory.afterPropertiesSet();
@@ -41,8 +40,8 @@ public class JpaConfig {
 	@Bean
 	public JpaVendorAdapter jpaVendorAdapter() {
 		EclipseLinkJpaVendorAdapter vendorAdapter = new EclipseLinkJpaVendorAdapter();
-	    vendorAdapter.setGenerateDdl(true);
-	    vendorAdapter.setShowSql(true);
+	    vendorAdapter.setGenerateDdl(databaseConfig.generateDdl());
+	    vendorAdapter.setShowSql(databaseConfig.showSql());
 	    vendorAdapter.setDatabasePlatform("org.eclipse.persistence.platform.database.MySQLPlatform");
 		return vendorAdapter;
 	}

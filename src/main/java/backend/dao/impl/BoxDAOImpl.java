@@ -1,6 +1,8 @@
 package backend.dao.impl;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -24,8 +26,6 @@ import backend.dao.GeneralDAO;
 import backend.exception.DAOException;
 import backend.jpa.entity.BoxMessage;
 import backend.jpa.entity.BoxMessageResponse;
-import backend.util.BackendConstants;
-import backend.util.TimeService;
 
 public class BoxDAOImpl extends GeneralDAO implements BoxDAO {
 
@@ -205,8 +205,8 @@ public class BoxDAOImpl extends GeneralDAO implements BoxDAO {
 		Query nativeQuery = jpaRepository.createNativeQuery(sql);
 		nativeQuery.setParameter(1, contractNumber);
 		nativeQuery.setParameter(2, "someType");
-		nativeQuery.setParameter(3, BackendConstants.DEFAULT_HTML_DATE_FORMATTER.format(lastAnnualDate));
-		nativeQuery.setParameter(4, BackendConstants.DEFAULT_HTML_DATE_FORMATTER.format(new Date(TimeService.currentTimeMillis())));
+		nativeQuery.setParameter(3, new SimpleDateFormat("yyyy-mm-dd").format(lastAnnualDate));
+		nativeQuery.setParameter(4, new SimpleDateFormat("yyyy-mm-dd").format(LocalDate.now()));
 		return ((BigDecimal) nativeQuery.getSingleResult()).shortValue();
 	}
 

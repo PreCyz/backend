@@ -20,7 +20,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import backend.AbstractUnitTest;
-import backend.exception.DAOException;
+import backend.exception.ApplicationUncheckedException;
 import backend.service.impl.ExceptionThrowerService;
 
 public class ExceptionThrowerServiceUnitTest extends AbstractUnitTest {
@@ -54,12 +54,10 @@ public class ExceptionThrowerServiceUnitTest extends AbstractUnitTest {
 		try {
 			thrower.throwNullOrEmpty(null, paramName);
 			fail("Should be DAOException");
-		} catch (DAOException ex) {
+		} catch (ApplicationUncheckedException ex) {
 			assertThat(ex, is( notNullValue() ));
 			assertThat(ex.getMessage(), is( equalTo(errorInfo) ));
-			assertThat(ex.isNotLog(), is( equalTo(true) ));
 			assertThat(ex.getMessageKey(), is( equalTo(EXCEPTION_MESSAGE_PREFIX) ));
-			assertThat(ex.getMessageParams(), is( equalTo(new String[]{serviceName, paramName})));
 			verify(logger, times(1)).error(errorInfo);
 		}
 	}
@@ -73,12 +71,10 @@ public class ExceptionThrowerServiceUnitTest extends AbstractUnitTest {
 		try {
 			thrower.throwNullOrEmpty("", paramName);
 			fail("Should be DAOException");
-		} catch (DAOException ex) {
+		} catch (ApplicationUncheckedException ex) {
 			assertThat(ex, is( notNullValue() ));
 			assertThat(ex.getMessage(), is( equalTo(errorInfo) ));
-			assertThat(ex.isNotLog(), is( equalTo(true) ));
 			assertThat(ex.getMessageKey(), is( equalTo(EXCEPTION_MESSAGE_PREFIX) ));
-			assertThat(ex.getMessageParams(), is( equalTo(new String[]{serviceName, paramName})));
 			verify(logger, times(1)).error(errorInfo);
 		}
 	}
@@ -88,10 +84,9 @@ public class ExceptionThrowerServiceUnitTest extends AbstractUnitTest {
 		try {
 			thrower.throwNullOrEmpty(null, null);
 			fail("Should be DAOException");
-		} catch (DAOException ex) {
+		} catch (ApplicationUncheckedException ex) {
 			assertThat(ex, is( notNullValue() ));
 			assertThat(ex.getMessageKey(), is( equalTo(EXCEPTION_MESSAGE_PREFIX) ));
-			assertThat(ex.getMessageParams(), is( equalTo(new String[]{serviceName, null})));
 		}
 	}
 	

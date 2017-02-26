@@ -13,14 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import backend.exception.DAOException;
+import backend.config.TestCoreConfig;
+import backend.exception.ApplicationUncheckedException;
 import backend.helper.StringHelper;
 import backend.itest.TestSessionService;
 import backend.service.SessionService;
 import backend.servlet.Log4jInitServlet;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:/test-spring-config.xml")
+@ContextConfiguration(classes={TestCoreConfig.class})
 public abstract class AbstractUnitTest {
 	
 	public static final String TEST_LOGGING_APPENDER = "backend.common.log4j.TestLoggingAppender";
@@ -55,7 +56,7 @@ public abstract class AbstractUnitTest {
 		PropertyConfigurator.configure(prop);
 	}
 	
-	protected void doAssertions(DAOException ex, String paramName, Class<?> serviceClass) {
+	protected void doAssertions(ApplicationUncheckedException ex, String paramName, Class<?> serviceClass) {
 		String serviceName = null;
 		if(serviceClass != null) {
 			serviceName = extractServiceName(serviceClass);

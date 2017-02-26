@@ -20,7 +20,7 @@ import org.eclipse.persistence.jaxb.JAXBContextFactory;
 import org.eclipse.persistence.jaxb.JAXBContextProperties;
 import org.eclipse.persistence.jaxb.MarshallerProperties;
 
-import backend.exception.DAOException;
+import backend.exception.ApplicationUncheckedException;
 
 public class JAXBUtilJSON {
 	
@@ -55,7 +55,7 @@ public class JAXBUtilJSON {
 				contexts.put(type, context);
 				return context;
 			} catch (JAXBException e) {
-				throw new DAOException("error initializing JAXB context for " + type, e);
+				throw new ApplicationUncheckedException("error initializing JAXB context for " + type, e);
 			}
 		}
 	}
@@ -75,7 +75,7 @@ public class JAXBUtilJSON {
 			JAXBElement<A> o = unmarshaller.unmarshal(new StreamSource(in), type);
 			return o.getValue();
 		} catch (Exception e) {
-			throw new DAOException("Error unmarshaling from stream", e);
+			throw new ApplicationUncheckedException("Error unmarshaling from stream", e);
 		}
 	}
 
@@ -99,7 +99,7 @@ public class JAXBUtilJSON {
 			JAXBElement<A> o = unmarshaller.unmarshal(src, type);
 			return o.getValue();
 		} catch (Exception e) {
-			throw new DAOException("Error unmarshaling string " + string, e);
+			throw new ApplicationUncheckedException("Error unmarshaling string " + string, e);
 		}
 	}
 	
@@ -118,7 +118,7 @@ public class JAXBUtilJSON {
 			
 			marshaller.marshal(object, out);
 			return out.toString(UTF8_CODING);
-		} catch (Exception e) {throw new DAOException("Error in JAXBUtil.marshalToString()", e);}
+		} catch (Exception e) {throw new ApplicationUncheckedException("Error in JAXBUtil.marshalToString()", e);}
 	}
 	
 	private static void setMarshallerProperties(Marshaller marshaller, OperationProperties ... marshalProperties) throws PropertyException {
@@ -145,7 +145,7 @@ public class JAXBUtilJSON {
 			setMarshallerProperties(marshaller);
 			marshaller.marshal(object, out);
 		} catch (Exception e) {
-			throw new DAOException("Error marshaling object to stream " + object, e);
+			throw new ApplicationUncheckedException("Error marshaling object to stream " + object, e);
 		}
 	}
 }

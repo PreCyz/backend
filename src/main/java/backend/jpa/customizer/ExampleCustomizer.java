@@ -5,16 +5,14 @@ import org.eclipse.persistence.descriptors.ClassDescriptor;
 import org.eclipse.persistence.expressions.Expression;
 import org.eclipse.persistence.expressions.ExpressionBuilder;
 
-import backend.jpa.entity.log.LogSQLEvent;
-
-public class LogDBEventCustomizer implements DescriptorCustomizer {
+public class ExampleCustomizer implements DescriptorCustomizer {
 
 	private final String COLUMN_NAME = "MESSAGE";
 	
 	@Override
 	public void customize(ClassDescriptor classDescriptor) throws Exception {
 		ExpressionBuilder account = new ExpressionBuilder();
-		Expression expression = account.getField(COLUMN_NAME).not().containsSubstring(LogSQLEvent.class.getSimpleName());
+		Expression expression = account.getField(COLUMN_NAME).not().containsSubstring("some value");
 		classDescriptor.getInheritancePolicy().setOnlyInstancesExpression(expression);
 	}
 

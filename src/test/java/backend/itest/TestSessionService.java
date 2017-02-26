@@ -7,7 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 
 import backend.dto.LoggedUser;
-import backend.exception.DAOException;
+import backend.exception.ApplicationUncheckedException;
 import backend.service.SessionService;
 
 public final class TestSessionService implements SessionService {
@@ -36,7 +36,7 @@ public final class TestSessionService implements SessionService {
 		String sessionId = getSessionId();
 		LoggedUser user = getFromSession(sessionId, LoggedUser.class);
 		if(hasUserWrongSession(sessionId, user)){
-			throw new DAOException("User does not have actual session.", EXCEPTION_MESSAGE_PREFIX + "user").setNotLog();
+			throw new ApplicationUncheckedException("User does not have actual session.", EXCEPTION_MESSAGE_PREFIX + "user");
 		}
 		return user;
 	}

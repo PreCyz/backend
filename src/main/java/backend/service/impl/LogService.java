@@ -3,9 +3,9 @@ package backend.service.impl;
 import java.util.Collection;
 
 import backend.jpa.Entry;
+import backend.jpa.entity.log.LogEvent;
+import backend.jpa.entity.log.LogLogin;
 import backend.jpa.impl.JpaRepository;
-import backend.jpa.newlog.entity.LoggerEvent;
-import backend.jpa.newlog.entity.LoggerLogin;
 
 public class LogService {
 	
@@ -15,13 +15,13 @@ public class LogService {
 		this.jpaService = jpaService;
 	}
 
-	public Long saveLoggerLogin(LoggerLogin loggerLogin) {
-		jpaService.save(loggerLogin);
-		return loggerLogin.getId();
+	public Long saveLoggerLogin(LogLogin logLogin) {
+		jpaService.save(logLogin);
+		return logLogin.getId();
 	}
 
-	public void saveLoggerEvent(LoggerEvent loggerEvent) {
-		jpaService.save(loggerEvent);
+	public void saveLoggerEvent(LogEvent logEvent) {
+		jpaService.save(logEvent);
 	}
 
 	public void saveEventLogs(Collection<Entry> collection) {

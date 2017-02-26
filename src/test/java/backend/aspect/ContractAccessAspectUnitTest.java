@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import backend.AbstractUnitTest;
 import backend.annotation.SecurityGuard;
 import backend.aspect.ContractAccessAspect;
-import backend.exception.DAOException;
+import backend.exception.ApplicationUncheckedException;
 
 public class ContractAccessAspectUnitTest extends AbstractUnitTest {
 
@@ -93,7 +93,7 @@ public class ContractAccessAspectUnitTest extends AbstractUnitTest {
 		try {
 			aspect.checkContractAccess(accessToContractRequired, contractNumber);
 			fail("Should be DAOException");
-		} catch (DAOException ex) {
+		} catch (ApplicationUncheckedException ex) {
 			assertThat(ex, is( notNullValue() ));
 			assertThat(ex.getMessage(), is( equalTo("User [clienttest] does not have access to contract [wrongContractNumber].") ));
 			assertThat(ex.getMessageKey(), is( equalTo("backend.aspect.noAccessToContract") ));

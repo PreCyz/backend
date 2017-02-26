@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import backend.exception.DAOException;
+import backend.exception.ApplicationUncheckedException;
 
 //Klasa tworzy całego poprawnego json'a. Jeśli trzeba dodatkowych opcji należy użyć odpowiednich features.
 //należy odpowiednio adnotować klasy do sparsowania, aby uzyskać żądany efekt (na tej samej zasadzie jak przy JAXB).
@@ -67,7 +67,7 @@ public class JacksonUtilJson {
 			return mapper.writeValueAsString(object);
 		} catch (JsonProcessingException e) {
 			String errorMsg = String.format("Error when marshalToString: %s", e.getMessage());
-			throw new DAOException(errorMsg, e);
+			throw new ApplicationUncheckedException(errorMsg, e);
 		}
 	}
 	
@@ -92,7 +92,7 @@ public class JacksonUtilJson {
 			ObjectMapper mapper = createSerializationObjectMapper(features);
 			mapper.writeValue(out, object);
 		} catch (IOException e) {
-			throw new DAOException("Error when marshal to output stream.", e);
+			throw new ApplicationUncheckedException("Error when marshal to output stream.", e);
 		}
 	}
 	
@@ -115,7 +115,7 @@ public class JacksonUtilJson {
 	        return mapper.readValue(json, type);
 		} catch (IOException e) {
 			String errMsg = String.format("Error when unmarshal String %s.", json);
-			throw new DAOException(errMsg, e);
+			throw new ApplicationUncheckedException(errMsg, e);
 		}
 	}
 
@@ -124,7 +124,7 @@ public class JacksonUtilJson {
 			ObjectMapper mapper = createDeserializationObjectMapper(features);
 	        return mapper.readValue(is, type);
 		} catch (IOException e) {
-			throw new DAOException("Error when unmarshal input stream.", e);
+			throw new ApplicationUncheckedException("Error when unmarshal input stream.", e);
 		}
 	}
 }

@@ -18,7 +18,7 @@ import org.dom4j.io.DOMWriter;
 
 import org.w3c.dom.*;
 
-import backend.exception.DAOException;
+import backend.exception.ApplicationUncheckedException;
 
 import java.io.*;
 
@@ -49,7 +49,7 @@ public class JAXBUtil {
 			
 			return document;
 		} catch (Exception e) {
-			throw new DAOException("Error marshaling object " + object, e);
+			throw new ApplicationUncheckedException("Error marshaling object " + object, e);
 		}
 	}
 	
@@ -78,7 +78,7 @@ public class JAXBUtil {
 			DOMReader reader = new DOMReader();
 			return reader.read(w3cDoc);
 		} catch (Exception e) {
-			throw new DAOException("Error marshaling object " + object, e);
+			throw new ApplicationUncheckedException("Error marshaling object " + object, e);
 		}
 	}
 	
@@ -93,7 +93,7 @@ public class JAXBUtil {
 			return (A)context.createUnmarshaller().unmarshal(w3cDoc);
 			
 		} catch (Exception e) {
-			throw new DAOException("Error unmarshaling document " + document, e);
+			throw new ApplicationUncheckedException("Error unmarshaling document " + document, e);
 		}
 	}
 	
@@ -107,7 +107,7 @@ public class JAXBUtil {
 				
 				return context;
 			} catch (JAXBException e) {
-				throw new DAOException("error initialiing JAXB context for " + type, e);
+				throw new ApplicationUncheckedException("error initialiing JAXB context for " + type, e);
 			}
 		}
 	}
@@ -143,7 +143,7 @@ public class JAXBUtil {
 			
 			marshaller.marshal(object, out);
 			return out.toString("UTF-8");
-		} catch (Exception e) {throw new DAOException("Error in JAXBUtil.marshalToString()", e);}
+		} catch (Exception e) {throw new ApplicationUncheckedException("Error in JAXBUtil.marshalToString()", e);}
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -153,7 +153,7 @@ public class JAXBUtil {
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 			return (A) unmarshaller.unmarshal(new ByteArrayInputStream(string.getBytes("UTF-8")));
 		} catch (Exception e) {
-			throw new DAOException("Error unmarshaling string " + string, e);
+			throw new ApplicationUncheckedException("Error unmarshaling string " + string, e);
 		}
 	}
 	
@@ -168,7 +168,7 @@ public class JAXBUtil {
 		try {
 			context.createMarshaller().marshal(object, out);
 		} catch (Exception e) {
-			throw new DAOException("Error marshaling object to stream " + object, e);
+			throw new ApplicationUncheckedException("Error marshaling object to stream " + object, e);
 		}
 	}
 	
@@ -179,7 +179,7 @@ public class JAXBUtil {
 			JAXBElement<A> o = unmarshaller.unmarshal(new StreamSource(in), type);
 			return o.getValue();
 		} catch (Exception e) {
-			throw new DAOException("Error unmarshaling from stream", e);
+			throw new ApplicationUncheckedException("Error unmarshaling from stream", e);
 		}
 	}
 }

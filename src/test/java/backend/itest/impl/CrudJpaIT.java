@@ -6,9 +6,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import backend.jpa.Entry;
+import backend.jpa.entity.log.LogEvent;
+import backend.jpa.entity.log.LogLogin;
 import backend.jpa.impl.JpaRepository;
-import backend.jpa.newlog.entity.LoggerEvent;
-import backend.jpa.newlog.entity.LoggerLogin;
 import backend.service.SessionService;
 
 public class CrudJpaIT extends AbstractIT {
@@ -38,19 +38,19 @@ public class CrudJpaIT extends AbstractIT {
 		cleanupList.stream().forEach(entry -> jpaRepository.delete(entry));
 	}
 	
-	private LoggerLogin createLoggerLogin() {
-		LoggerLogin loggerLogin = new LoggerLogin();
-		loggerLogin.setAgentName("Mozilla FireFox");
-		loggerLogin.setLogDate(LocalDateTime.now());
-		loggerLogin.setUserName(sessionService.getUserWithActualSession().getUserName());
-		return loggerLogin;
+	private LogLogin createLoggerLogin() {
+		LogLogin logLogin = new LogLogin();
+		logLogin.setAgentName("Mozilla FireFox");
+		logLogin.setLogDate(LocalDateTime.now());
+		logLogin.setUserName(sessionService.getUserWithActualSession().getUserName());
+		return logLogin;
 	}
 	
-	private LoggerEvent createLoggerEvent() {
-		LoggerEvent loggerEvent = new LoggerEvent();
-		loggerEvent.setLogDate(LocalDateTime.now());
-		loggerEvent.setEventDetails("Some detailed message.");
-		return loggerEvent;
+	private LogEvent createLoggerEvent() {
+		LogEvent logEvent = new LogEvent();
+		logEvent.setLogDate(LocalDateTime.now());
+		logEvent.setEventDetails("Some detailed message.");
+		return logEvent;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -58,17 +58,17 @@ public class CrudJpaIT extends AbstractIT {
 		displayTestName();
 		
 		cleanupList.clear();
-		LoggerLogin loggerLogin = createLoggerLogin();
-		jpaRepository.save(loggerLogin);
-		LoggerEvent loggerEvent = createLoggerEvent();
-		loggerEvent.setLoggerLogin(loggerLogin);
-		jpaRepository.save(loggerEvent);
-		Collection<LoggerLogin> collection = (Collection<LoggerLogin>) jpaRepository.loadAll(LoggerLogin.class);
+		LogLogin logLogin = createLoggerLogin();
+		jpaRepository.save(logLogin);
+		LogEvent logEvent = createLoggerEvent();
+		logEvent.setLoggerLogin(logLogin);
+		jpaRepository.save(logEvent);
+		Collection<LogLogin> collection = (Collection<LogLogin>) jpaRepository.loadAll(LogLogin.class);
 		assertion("Collection should not be empty.", !collection.isEmpty());
-		LoggerLogin insertedEntry = jpaRepository.find(loggerLogin, loggerLogin.getId());
+		LogLogin insertedEntry = jpaRepository.find(logLogin, logLogin.getId());
 		assertion("Inserted entry should not be null.", insertedEntry != null);
-		cleanupList.add(loggerEvent );
-		cleanupList.add(loggerLogin);
+		cleanupList.add(logEvent );
+		cleanupList.add(logLogin);
 	}
 
 }

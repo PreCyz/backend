@@ -3,13 +3,9 @@ package backend.dao.impl;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -23,9 +19,7 @@ import javax.persistence.criteria.Root;
 
 import backend.dao.BoxDAO;
 import backend.dao.GeneralDAO;
-import backend.exception.DAOException;
-import backend.jpa.entity.BoxMessage;
-import backend.jpa.entity.BoxMessageResponse;
+import backend.exception.ApplicationUncheckedException;
 
 public class BoxDAOImpl extends GeneralDAO implements BoxDAO {
 
@@ -49,67 +43,7 @@ public class BoxDAOImpl extends GeneralDAO implements BoxDAO {
 		return "";
 	}
 
-	@Override
-	public Long saveMessage(BoxMessage message) {
-		return saveFullyPreparedMessage(message);
-	}
-
-	private Long saveFullyPreparedMessage(BoxMessage message) {
-		try {
-		
-			jpaRepository.save(message);
-			
-			return message.getId();
-		} catch (Exception e) {
-			String errMsg = "BoxDAOImpl.saveFullyPreparedMessage";
-			DAOException daoException = new DAOException(errMsg, e);
-			if (e.getMessage() != null && e.getMessage().startsWith("ORA-00001")) {
-				daoException.setNotLog();
-			} else {
-				logger.error(errMsg, e);
-				throw daoException;
-			}
-		}
-		return null;
-	}
-	
-	@Override
-	public void saveProcessedMessage(BoxMessage message) {
-		saveFullyPreparedMessage(message);
-	}
-
-
-	@Override
-	public void updateMessageData(BoxMessage message) {
-		try {			
-
-			jpaRepository.save(message);
-			
-		} catch (Exception e) {
-			String errMsg = "BoxDAOImpl.updateMessageData";
-			logger.error(errMsg, e);
-			throw new DAOException(errMsg, e);
-		}
-	}
-
-	@Override
-	public List<BoxMessage> getSavedMessages(String contractNumber) {
-
-		try {
-			Map<String, String> params = new LinkedHashMap<>();
-			params.put("contractNumber", contractNumber);
-			
-			List<BoxMessage> messages = jpaRepository.findListWithNamedQuery(BoxMessage.class, "BoxMessage.findByContractNumberOrdered", params);
-			
-			return messages;
-		} catch (Exception e) {
-			String errMsg = "BoxDAOImpl.getSolMessages";
-			logger.error(errMsg, e);
-			throw new DAOException(errMsg, e);
-		}
-	}
-
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	@Override
 	public List<BoxMessage> getSavedMessagesForIds(String ids) {
 		if(!isIdsProper(ids)){
@@ -136,7 +70,7 @@ public class BoxDAOImpl extends GeneralDAO implements BoxDAO {
 		} catch (Exception e) {
 			String errMsg = "BoxDAOImpl.getSolMessages";
 			logger.error(errMsg, e);
-			throw new DAOException(errMsg, e);
+			throw new ApplicationUncheckedException(errMsg, e);
 		}
 	}
 
@@ -144,32 +78,7 @@ public class BoxDAOImpl extends GeneralDAO implements BoxDAO {
 		Pattern pattern = Pattern.compile("[0-9, ]*");
         Matcher matcher = pattern.matcher((String) ids);
         return matcher.matches();
-	}
-
-	@Override
-	public List<BoxMessageResponse> getMessagesResponses(String contractNumber) {
-		List<BoxMessageResponse> result = new LinkedList<>();
-		try {
-			List<BoxMessage> messages = new ArrayList<>();
-			
-			Map<String, String> params = new HashMap<>();
-			params.put("contractNumber", contractNumber);
-			
-			messages.addAll(jpaRepository.findListWithNamedQuery(BoxMessage.class, "BoxMessage.findByContractNumber", params));
-			
-			messages.stream().forEach(boxMessage -> {
-				if(boxMessage.getBoxMessageResponse() != null){
-					result.add(boxMessage.getBoxMessageResponse());
-				}
-			});
-		} catch (Exception e) {
-			String errMsg = "BoxDAOImpl.getSolMessages";
-			logger.error(errMsg, e);
-			throw new DAOException(errMsg, e);
-		}
-		
-		return result;
-	}
+	}*/
 	
 	@Override
 	public Set<String> getReadedMessages(String userName, String contractNumber) {
@@ -181,7 +90,7 @@ public class BoxDAOImpl extends GeneralDAO implements BoxDAO {
 		} catch (Exception e) {
 			String errMsg = "BoxDAOImpl.getSolMessages";
 			logger.error(errMsg, e);
-			throw new DAOException(errMsg, e);
+			throw new ApplicationUncheckedException(errMsg, e);
 		}
 		
 		return readed;

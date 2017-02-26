@@ -11,7 +11,7 @@ import org.apache.cxf.phase.PhaseInterceptorChain;
 import org.apache.cxf.transport.http.AbstractHTTPDestination;
 
 import backend.dto.LoggedUser;
-import backend.exception.DAOException;
+import backend.exception.ApplicationUncheckedException;
 import backend.helper.MessageHelper;
 import backend.helper.StringHelper;
 import backend.service.SessionService;
@@ -64,11 +64,11 @@ public class SessionServiceImpl implements SessionService {
 	public LoggedUser getUserWithActualSession() {
 		String sessionId = getSessionId();
 		if(StringHelper.empty(sessionId)) {
-			throw new DAOException(MessageHelper.getMessage(getMsgKey("session"), null), getMsgKey("session")).setNotLog();
+			throw new ApplicationUncheckedException(MessageHelper.getMessage(getMsgKey("session"), null), getMsgKey("session"));
 		}
 		LoggedUser user = getFromSession(sessionId, LoggedUser.class);
 		if(hasUserWrongSession(sessionId, user)) {
-			throw new DAOException(MessageHelper.getMessage(getMsgKey("user"), null), getMsgKey("user")).setNotLog();
+			throw new ApplicationUncheckedException(MessageHelper.getMessage(getMsgKey("user"), null), getMsgKey("user"));
 		}
 		return user;
 	}

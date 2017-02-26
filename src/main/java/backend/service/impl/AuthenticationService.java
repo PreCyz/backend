@@ -39,7 +39,6 @@ public class AuthenticationService extends AbstractService {
 		exceptionThrower.throwNullOrEmpty(details, "loginDetails");
 		exceptionThrower.throwNullOrEmpty(details.getLogin(), "login");
 		exceptionThrower.throwNullOrEmpty(details.getPassword(), "currentPassword");
-		exceptionThrower.throwNullOrEmpty(details.getMode(), "mode");
 	}
 	
 	private void throwExceptionIfEmptyNewPassword(LoginDetails details) {

@@ -1,4 +1,4 @@
-package backend.jpa.newlog.entity;
+package backend.jpa.entity.log;
 
 import java.time.LocalDateTime;
 
@@ -16,7 +16,7 @@ import backend.jpa.Entry;
 @Entity
 @Table(name = "LOGGER_EVENT")
 @Access(AccessType.FIELD)
-public class LoggerEvent extends AutoIncrementEntry {
+public class LogEvent extends AutoIncrementEntry {
 
 	private static final long serialVersionUID = 2203669897287893893L;
 	
@@ -28,9 +28,9 @@ public class LoggerEvent extends AutoIncrementEntry {
 	
 	@ManyToOne
 	@JoinColumn(name = "LOGGER_LOGIN_ID", nullable = false, updatable = true, insertable = true)
-	private LoggerLogin loggerLogin;
+	private LogLogin logLogin;
 	
-	public LoggerEvent() {
+	public LogEvent() {
 		super();
 	}
 
@@ -42,12 +42,12 @@ public class LoggerEvent extends AutoIncrementEntry {
 		this.logDate = logDate;
 	}
 
-	public LoggerLogin getLoggerLogin() {
-		return loggerLogin;
+	public LogLogin getLoggerLogin() {
+		return logLogin;
 	}
 
-	public void setLoggerLogin(LoggerLogin loggerLogin) {
-		this.loggerLogin = loggerLogin;
+	public void setLoggerLogin(LogLogin logLogin) {
+		this.logLogin = logLogin;
 	}
 
 	public String getEventDetails() {
@@ -61,10 +61,10 @@ public class LoggerEvent extends AutoIncrementEntry {
 	@Override
 	public void update(Entry entry) {
 		super.update(entry);
-		LoggerEvent loggerEvent = (LoggerEvent) entry;
-		this.eventDetails = loggerEvent.getEventDetails();
-		this.logDate = loggerEvent.getLogDate();
-		this.loggerLogin = loggerEvent.getLoggerLogin();
+		LogEvent logEvent = (LogEvent) entry;
+		this.eventDetails = logEvent.getEventDetails();
+		this.logDate = logEvent.getLogDate();
+		this.logLogin = logEvent.getLoggerLogin();
 	}
 
 	public int hashCode() {
@@ -72,7 +72,7 @@ public class LoggerEvent extends AutoIncrementEntry {
 		int result = super.hashCode();
 		result = prime * result + ((eventDetails == null) ? 0 : eventDetails.hashCode());
 		result = prime * result + ((logDate == null) ? 0 : logDate.hashCode());
-		result = prime * result + ((loggerLogin == null) ? 0 : loggerLogin.hashCode());
+		result = prime * result + ((logLogin == null) ? 0 : logLogin.hashCode());
 		return result;
 	}
 
@@ -83,7 +83,7 @@ public class LoggerEvent extends AutoIncrementEntry {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		LoggerEvent other = (LoggerEvent) obj;
+		LogEvent other = (LogEvent) obj;
 		if (eventDetails == null) {
 			if (other.eventDetails != null)
 				return false;
@@ -94,10 +94,10 @@ public class LoggerEvent extends AutoIncrementEntry {
 				return false;
 		} else if (!logDate.equals(other.logDate))
 			return false;
-		if (loggerLogin == null) {
-			if (other.loggerLogin != null)
+		if (logLogin == null) {
+			if (other.logLogin != null)
 				return false;
-		} else if (!loggerLogin.equals(other.loggerLogin))
+		} else if (!logLogin.equals(other.logLogin))
 			return false;
 		return true;
 	}

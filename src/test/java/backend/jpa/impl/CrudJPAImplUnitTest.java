@@ -18,7 +18,7 @@ import org.mockito.MockitoAnnotations;
 import backend.AbstractUnitTest;
 import backend.jpa.AutoIncrementEntry;
 import backend.jpa.CrudJPA;
-import backend.jpa.newlog.entity.LoggerLogin;
+import backend.jpa.entity.log.LogLogin;
 
 public class CrudJPAImplUnitTest extends AbstractUnitTest {
 	
@@ -30,7 +30,7 @@ public class CrudJPAImplUnitTest extends AbstractUnitTest {
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		entity = new LoggerLogin();
+		entity = new LogLogin();
 	}
 
 	@After
@@ -54,8 +54,8 @@ public class CrudJPAImplUnitTest extends AbstractUnitTest {
 	
 	@Test
 	public void givenMockDaoAndLogLoginEntryWhenLoadAllReturnCollectionOfLogLogin() throws Exception {
-		when(mockCrudJpa.loadAll(entityManager, LoggerLogin.class)).thenReturn(Collections.emptyList());
-		assertTrue(mockCrudJpa.loadAll(entityManager, LoggerLogin.class).isEmpty());
+		when(mockCrudJpa.loadAll(entityManager, LogLogin.class)).thenReturn(Collections.emptyList());
+		assertTrue(mockCrudJpa.loadAll(entityManager, LogLogin.class).isEmpty());
 	}
 	
 	@Test

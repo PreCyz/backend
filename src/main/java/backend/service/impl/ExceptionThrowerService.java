@@ -2,7 +2,7 @@ package backend.service.impl;
 
 import org.apache.commons.logging.Log;
 
-import backend.exception.DAOException;
+import backend.exception.ApplicationUncheckedException;
 import backend.helper.StringHelper;
 
 public class ExceptionThrowerService {
@@ -34,6 +34,6 @@ public class ExceptionThrowerService {
 	private void logAndThrowException(String paramName) {
 		String errorInfo = String.format("%s - empty parameter [%s].", serviceName, paramName);
 		logger.error(errorInfo);
-		throw new DAOException(errorInfo, EXCEPTION_MESSAGE_PREFIX, new String[]{serviceName, paramName}).setNotLog();
+		throw new ApplicationUncheckedException(errorInfo, EXCEPTION_MESSAGE_PREFIX, new String[]{serviceName, paramName});
 	}
 }

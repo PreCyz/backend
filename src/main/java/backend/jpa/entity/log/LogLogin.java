@@ -1,4 +1,4 @@
-package backend.jpa.newlog.entity;
+package backend.jpa.entity.log;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,7 +19,8 @@ import backend.jpa.LazyLoading;
 @Entity
 @Table(name = "LOGGER_LOGIN")
 @Access(AccessType.FIELD)
-public class LoggerLogin extends AutoIncrementEntry implements LazyLoading {
+//@Customizer(LogDBEventCustomizer.class)
+public class LogLogin extends AutoIncrementEntry implements LazyLoading {
 
 	private static final long serialVersionUID = 6427616661843775840L;
 	
@@ -32,10 +33,10 @@ public class LoggerLogin extends AutoIncrementEntry implements LazyLoading {
 	@Column(name = "LOG_DATE", nullable = false, columnDefinition = "DATETIME")
 	private LocalDateTime logDate;
 	
-	@OneToMany(mappedBy = "loggerLogin", fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
-	private List<LoggerEvent> loggerEvents;
+	@OneToMany(mappedBy = "logLogin", fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
+	private List<LogEvent> logEvents;
 	
-	public LoggerLogin() {
+	public LogLogin() {
 		super();
 	}
 
@@ -60,12 +61,12 @@ public class LoggerLogin extends AutoIncrementEntry implements LazyLoading {
 		this.logDate = logDate;
 	}
 
-	public List<LoggerEvent> getLoggerEvents() {
-		return loggerEvents;
+	public List<LogEvent> getLoggerEvents() {
+		return logEvents;
 	}
 
-	public void setLoggerEvents(List<LoggerEvent> loggerEvents) {
-		this.loggerEvents = loggerEvents;
+	public void setLoggerEvents(List<LogEvent> logEvents) {
+		this.logEvents = logEvents;
 	}
 
 	public String getAgentName() {
@@ -79,11 +80,11 @@ public class LoggerLogin extends AutoIncrementEntry implements LazyLoading {
 	@Override
 	public void update(Entry entry) {
 		super.update(entry);
-		LoggerLogin loggerLogin = (LoggerLogin) entry;
-		this.logDate = loggerLogin.getLogDate();
-		this.agentName = loggerLogin.getAgentName();
-		this.userName = loggerLogin.getUserName();
-		this.loggerEvents = loggerLogin.getLoggerEvents();
+		LogLogin logLogin = (LogLogin) entry;
+		this.logDate = logLogin.getLogDate();
+		this.agentName = logLogin.getAgentName();
+		this.userName = logLogin.getUserName();
+		this.logEvents = logLogin.getLoggerEvents();
 	}
 
 	public int hashCode() {
@@ -91,7 +92,7 @@ public class LoggerLogin extends AutoIncrementEntry implements LazyLoading {
 		int result = super.hashCode();
 		result = prime * result + ((agentName == null) ? 0 : agentName.hashCode());
 		result = prime * result + ((logDate == null) ? 0 : logDate.hashCode());
-		result = prime * result + ((loggerEvents == null) ? 0 : loggerEvents.hashCode());
+		result = prime * result + ((logEvents == null) ? 0 : logEvents.hashCode());
 		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		return result;
 	}
@@ -103,7 +104,7 @@ public class LoggerLogin extends AutoIncrementEntry implements LazyLoading {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		LoggerLogin other = (LoggerLogin) obj;
+		LogLogin other = (LogLogin) obj;
 		if (agentName == null) {
 			if (other.agentName != null)
 				return false;
@@ -114,10 +115,10 @@ public class LoggerLogin extends AutoIncrementEntry implements LazyLoading {
 				return false;
 		} else if (!logDate.equals(other.logDate))
 			return false;
-		if (loggerEvents == null) {
-			if (other.loggerEvents != null)
+		if (logEvents == null) {
+			if (other.logEvents != null)
 				return false;
-		} else if (!loggerEvents.equals(other.loggerEvents))
+		} else if (!logEvents.equals(other.logEvents))
 			return false;
 		if (userName == null) {
 			if (other.userName != null)

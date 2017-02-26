@@ -9,11 +9,9 @@ import org.springframework.context.annotation.Configuration;
 
 import backend.dao.AuthenticationDAO;
 import backend.dao.BoxDAO;
-import backend.dao.InboxDAO;
 import backend.dao.LogDAO;
 import backend.dao.impl.AuthenticationDAOImpl;
 import backend.dao.impl.BoxDAOImpl;
-import backend.dao.impl.InboxDAOImpl;
 import backend.dao.impl.LogDAOImpl;
 import backend.jpa.CrudJPA;
 import backend.jpa.impl.JpaRepository;
@@ -42,14 +40,6 @@ public class RepositoryConfig {
 		BoxDAOImpl boxDao = new BoxDAOImpl();
 		boxDao.setJpaRepository(jpaRepository());
 		return boxDao;
-	}
-	
-	@Bean
-	public InboxDAO inboxDao() {
-		InboxDAOImpl dao = new InboxDAOImpl();
-		dao.setAuthenticationDao(authenticationDao());
-		dao.setBoxDao(boxDao());
-		return dao;
 	}
 	
 	@Bean

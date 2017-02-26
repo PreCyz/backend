@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Scope;
 
 import backend.service.SessionService;
 import backend.service.impl.AuthenticationService;
-import backend.service.impl.BoxService;
 import backend.service.impl.ExceptionThrowerService;
 import backend.service.impl.SessionServiceImpl;
 
@@ -37,11 +36,4 @@ public class ServiceConfig {
 		return service;
 	}
 	
-	@Bean
-	public BoxService boxService() {
-		BoxService boxService = new BoxService(exceptionThrowerService());
-		boxService.setBoxDAO(repositoryConfig.boxDao());
-		return boxService;
-	}
-
 }

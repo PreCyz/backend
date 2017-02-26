@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import backend.AbstractUnitTest;
 import backend.annotation.SecurityGuard;
 import backend.aspect.ActiveSessionAspect;
-import backend.exception.DAOException;
+import backend.exception.ApplicationUncheckedException;
 
 public class ActiveSessionAspectUnitTest extends AbstractUnitTest {
 	
@@ -73,7 +73,7 @@ public class ActiveSessionAspectUnitTest extends AbstractUnitTest {
 		try {
 			aspect.checkActiveSession(activeSessionRequired);
 			fail("Should be DAOException");
-		} catch (DAOException ex) {
+		} catch (ApplicationUncheckedException ex) {
 			assertThat(ex, is( notNullValue() ));
 			assertThat(ex.getMessage(), is( equalTo("User does not have actual session.") ));
 			assertThat(ex.getMessageKey(), is( equalTo("backend.session.service.invalid.user") ));
@@ -86,7 +86,7 @@ public class ActiveSessionAspectUnitTest extends AbstractUnitTest {
 		try {
 			aspect.checkActiveSession(activeSessionRequired);
 			fail("Should be DAOException");
-		} catch (DAOException ex) {
+		} catch (ApplicationUncheckedException ex) {
 			assertThat(ex, is( notNullValue() ));
 			assertThat(ex.getMessage(), is( equalTo("User does not have actual session.") ));
 			assertThat(ex.getMessageKey(), is( equalTo("backend.session.service.invalid.user") ));

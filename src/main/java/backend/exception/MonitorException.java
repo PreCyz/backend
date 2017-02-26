@@ -1,6 +1,6 @@
 package backend.exception;
 
-public class MonitorException extends Exception {
+public class MonitorException extends ApplicationCheckedException {
 
 	private static final long serialVersionUID = 5497422801548094197L;
 	
@@ -8,7 +8,7 @@ public class MonitorException extends Exception {
 	private Throwable exception;
 	
 	public MonitorException(Throwable exception) {
-		super(exception);
+		super(exception.getMessage());
 		this.exception = exception;
 	}
 	

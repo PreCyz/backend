@@ -2,7 +2,7 @@ package backend.aspect;
 
 import backend.annotation.SecurityGuard;
 import backend.dto.LoggedUser;
-import backend.exception.DAOException;
+import backend.exception.AspectException;
 import backend.helper.StringHelper;
 import backend.initiator.LoggerInitiator;
 import backend.service.SessionService;
@@ -26,7 +26,7 @@ public class ContractAccessAspect extends LoggerInitiator {
 		if ( !hasUserAccessToContract(contractNumber, user) ) {
 			String errorMsg = String.format("User [%s] does not have access to contract [%s].", user.getUserLogin(), contractNumber);
 			logger.error(errorMsg);
-			throw new DAOException(errorMsg, ERROR_MSG_KEY, new String[]{user.getUserLogin(), contractNumber});
+			throw new AspectException(errorMsg, ERROR_MSG_KEY, new String[]{user.getUserLogin(), contractNumber});
 		}
 		sessionService.addUserContractToSession(contractNumber);
 	}

@@ -23,7 +23,7 @@ import javax.mail.internet.MimeMultipart;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import backend.exception.DAOException;
+import backend.exception.ApplicationUncheckedException;
 import backend.service.EmailService;
 
 public class EmailServiceImpl implements EmailService {
@@ -80,7 +80,7 @@ public class EmailServiceImpl implements EmailService {
 				for (int i = 0; i < files.length; ++i) {
 					File file = files[i];
 					if (!file.exists()) {
-						throw new DAOException("File for email attachement not exists under path: " + file.getAbsolutePath());
+						throw new ApplicationUncheckedException("File for email attachement not exists under path: " + file.getAbsolutePath());
 					}
 					// Part two is attachment
 					messageBodyPart = new MimeBodyPart();
@@ -98,7 +98,7 @@ public class EmailServiceImpl implements EmailService {
 			
 		} catch (Exception e) {
 			logger.error("Error sending message to " + to[0], e);
-			throw new DAOException("Error sending message to " + to[0], e);
+			throw new ApplicationUncheckedException("Error sending message to " + to[0], e);
 		}
 	}
 

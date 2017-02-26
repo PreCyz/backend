@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class LoginDetails {
 	private String login;
 	private String password;
-	private LoginMode mode;
 	private String deviceId; 
 	private String securityCode;
 	private String deviceName;
@@ -19,10 +18,9 @@ public class LoginDetails {
 	
 	public LoginDetails() {}
 
-	public LoginDetails(String login, String password, LoginMode mode, String deviceId, String securityCode, String deviceName) {
+	public LoginDetails(String login, String password, String deviceId, String securityCode, String deviceName) {
 		this.login = login;
 		this.password = password;
-		this.mode = mode;
 		this.deviceId = deviceId;
 		this.securityCode = securityCode;
 		this.deviceName = deviceName;
@@ -33,9 +31,6 @@ public class LoginDetails {
 	}
 	public String getPassword() {
 		return password;
-	}
-	public LoginMode getMode() {
-		return mode;
 	}
 	public String getDeviceId() {
 		return deviceId;
@@ -51,9 +46,6 @@ public class LoginDetails {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	public void setMode(LoginMode mode) {
-		this.mode = mode;
 	}
 	public void setDeviceId(String deviceId) {
 		this.deviceId = deviceId;

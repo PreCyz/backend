@@ -60,7 +60,7 @@
 		Tomcata w pliku server.xml -->
 	<context-param>
 		<param-name>log4jAppenderFILE</param-name>
-		<param-value>C:/bd.log</param-value>
+		<param-value>/home/gawa/Workspace/log</param-value>
 	</context-param>
 	<context-param>
 		<param-name>log4jFileAppenderLEVEL</param-name>

@@ -18,11 +18,11 @@ import javax.sql.DataSource;
 
 import backend.jpa.JPAUnitTest;
 
-public class JPAIntegrationTest extends AbstractIT {
+public class JpaIntegrationTest extends AbstractIT {
 	
 	private DataSource dataSource;
 	
-	public JPAIntegrationTest(DataSource dataSource) {
+	public JpaIntegrationTest(DataSource dataSource) {
 		this.dataSource = dataSource; 
 	}
 

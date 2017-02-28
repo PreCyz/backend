@@ -36,6 +36,7 @@ public class ContractAccessAspect extends LoggerInitiator {
 	}
 	
 	private boolean hasUserAccessToContract(String contractNumber, LoggedUser user) {
+		//TODO: implementation of this method
 		return true;
 	}
 	

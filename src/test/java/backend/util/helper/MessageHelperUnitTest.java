@@ -41,7 +41,7 @@ public class MessageHelperUnitTest {
 		
 		messageParams = new String[]{"1"};
 		key = "setClientPersonalData.1";
-		expected=String.format("[setClientPersonalData][client]=%s", messageParams[0]);
+		expected = String.format("[setClientPersonalData][client]=%s", messageParams[0]);
 		actual = MessageHelper.getMessage(key, messageParams);
 		assertNotNull(actual);
 		assertEquals(expected, actual);

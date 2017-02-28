@@ -16,10 +16,10 @@ import backend.dto.LoggedUser;
 import backend.dto.LoginDetails;
 import backend.facade.WebServiceFacade;
 
-public class WebServiceFacadeUnitTest extends AbstractUnitTest{
+public class WebServiceFacadeUnitTest extends AbstractUnitTest {
 	
 	@Autowired
-	private WebServiceFacade wsFacade;
+	private WebServiceFacade webServiceFacade;
 	
 	@Mock
 	private WebServiceFacade mockWsFacade;
@@ -47,6 +47,6 @@ public class WebServiceFacadeUnitTest extends AbstractUnitTest{
 	
 	@Test
 	public void givenAutowiredFieldWhenTestThenFieldIsNotNull() throws Exception {
-		assertNotNull(wsFacade);
+		assertNotNull(webServiceFacade);
 	}
 }

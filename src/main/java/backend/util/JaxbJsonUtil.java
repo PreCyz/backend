@@ -22,7 +22,7 @@ import org.eclipse.persistence.jaxb.MarshallerProperties;
 
 import backend.exception.ApplicationUncheckedException;
 
-public class JAXBUtilJSON {
+public class JaxbJsonUtil {
 	
 	private static final Map<Class<? extends Object>, JAXBContext> contexts = new HashMap<Class<? extends Object>, JAXBContext>();
 	private static String UTF8_CODING = "UTF-8";

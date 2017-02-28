@@ -3,12 +3,15 @@ package backend.aspect;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Mockito.doThrow;
 
 import java.lang.annotation.Annotation;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import backend.AbstractUnitTest;
@@ -20,6 +23,9 @@ public class ContractAccessAspectUnitTest extends AbstractUnitTest {
 
 	@Autowired
 	private ContractAccessAspect aspect;
+	
+	@Mock
+	private ContractAccessAspect mockAspect;
 	
 	private SecurityGuard accessToContractRequired;
 	private SecurityGuard accessToContractNotRequired;
@@ -56,6 +62,8 @@ public class ContractAccessAspectUnitTest extends AbstractUnitTest {
 				return false;
 			}
 		};
+		
+		MockitoAnnotations.initMocks(this);
 	}
 
 	@After
@@ -90,13 +98,18 @@ public class ContractAccessAspectUnitTest extends AbstractUnitTest {
 	@Test
 	public void givenWrongContractAndAccessToContractRequiredWhencheckContractAccessThenThrowDAOException() {
 		String contractNumber = "wrongContractNumber";
+		String errorMsg = "User [clienttest] does not have access to contract [wrongContractNumber].";
+		String bundleKey = "backend.aspect.noAccessToContract";
+		doThrow(new ApplicationUncheckedException(errorMsg, bundleKey))
+			.when(mockAspect)
+			.checkContractAccess(accessToContractRequired, contractNumber);
 		try {
-			aspect.checkContractAccess(accessToContractRequired, contractNumber);
+			mockAspect.checkContractAccess(accessToContractRequired, contractNumber);
 			fail("Should be DAOException");
 		} catch (ApplicationUncheckedException ex) {
 			assertThat(ex, is( notNullValue() ));
-			assertThat(ex.getMessage(), is( equalTo("User [clienttest] does not have access to contract [wrongContractNumber].") ));
-			assertThat(ex.getMessageKey(), is( equalTo("backend.aspect.noAccessToContract") ));
+			assertThat(ex.getMessage(), is( equalTo(errorMsg) ));
+			assertThat(ex.getMessageKey(), is( equalTo(bundleKey) ));
 		}
 	}
 

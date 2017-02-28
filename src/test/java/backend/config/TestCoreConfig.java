@@ -9,14 +9,13 @@ import backend.service.SessionService;
 
 @Configuration
 @Import({
-	AopConfig.class, 
+	AopConfig.class,
+	CxfConfig.class,
+	JpaConfig.class,
+	RepositoryConfig.class,
 	ServiceConfig.class, 
-	JpaConfig.class, 
-	TestDatabaseConfig.class,
-	RepositoryConfig.class})
+	TestDatabaseConfig.class})
 public class TestCoreConfig {
-	
-/* <bean id="loggingAppender" class="backend.common.log4j.TestLoggingAppender" /> */
 	
 	@Bean
 	public SessionService sessionService() {

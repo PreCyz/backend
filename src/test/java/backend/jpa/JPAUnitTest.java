@@ -1,7 +1,7 @@
 package backend.jpa;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import javax.sql.DataSource;
 
@@ -9,45 +9,37 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import backend.AbstractUnitTest;
 
 public class JPAUnitTest extends AbstractUnitTest {
 	
 	@Autowired
-	@Qualifier(value = "dataSource")
-	private DataSource dataSource;
+	private DataSource mySqlDataSource;
 	
-	private org.apache.tomcat.jdbc.pool.DataSource oracleDataSource;
+	private DriverManagerDataSource driverManagerDataSource;
 
 	@Before
 	public void setUp() throws Exception {
-		oracleDataSource = (org.apache.tomcat.jdbc.pool.DataSource) dataSource;
+		driverManagerDataSource = (DriverManagerDataSource) mySqlDataSource;
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		oracleDataSource = null;
+		driverManagerDataSource = null;
 	}
 	
 	@Test
-	public void givenDefinedDataSourceJavaxSqlWhenAutowiredThenSetDataSource() {
-		assertNotNull(dataSource);
-		assertEquals("jdbc:oracle:thin:@plwadbt1:1521:plwadbt1", oracleDataSource.getUrl());
-		assertEquals("stag_pl_mysimon", oracleDataSource.getUsername());
-		assertEquals("oracle.jdbc.driver.OracleDriver", oracleDataSource.getDriverClassName());
-		assertEquals("jdbc/ploracle-ds", oracleDataSource.getName());
-		assertEquals("qq", oracleDataSource.getDbProperties().getProperty("password"));
+	public void givenDefinedDataSourceWhenAutowiredThenSetDataSource() {
+		assertNotNull(mySqlDataSource);
+		assertNotNull("URL for data source should not be null.", driverManagerDataSource.getUrl());
+		assertNotNull("Username should not be null.", driverManagerDataSource.getUsername());
+		assertNotNull("Password should not be null.", driverManagerDataSource.getPassword());
+		assertNotNull("Data source properties should not be null.", 
+				driverManagerDataSource.getConnectionProperties());
+		assertTrue("Data source should have some properties", 
+				driverManagerDataSource.getConnectionProperties().keySet().size() > 0);
 	}
-
-	@Test
-	public void givenDataSourceWhenAutoWiredThenReturnProperProperties() {
-		assertNotNull(oracleDataSource);
-		assertEquals("jdbc:oracle:thin:@plwadbt1:1521:plwadbt1", oracleDataSource.getUrl());
-		assertEquals("stag_pl_mysimon", oracleDataSource.getUsername());
-		assertEquals("oracle.jdbc.driver.OracleDriver", oracleDataSource.getDriverClassName());
-		assertEquals("jdbc/ploracle-ds", oracleDataSource.getName());
-		assertEquals("qq", oracleDataSource.getDbProperties().getProperty("password"));
-	}
+	
 }

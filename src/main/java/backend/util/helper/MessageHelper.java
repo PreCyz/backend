@@ -7,10 +7,11 @@ import java.util.ResourceBundle;
 
 public class MessageHelper {
 	
-	public static final String LOG_BUNDLE_NAME = "loggerKeys.log";
+	public static final String LOG_BUNDLE_NAME = "bundle.log-bundle";
 	
 	public static ResourceBundle getResourceBundle() {
-		return ResourceBundle.getBundle(LOG_BUNDLE_NAME, new Locale("en"));
+		return ResourceBundle.getBundle(
+				LOG_BUNDLE_NAME, new Locale("en"), MessageHelper.class.getClassLoader());
 	}
 	
 	public static String getMessage(String key, String[] messageParams) {

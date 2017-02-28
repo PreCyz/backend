@@ -17,7 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import backend.dto.LoggedUser;
-import backend.util.JAXBUtilJSON;
+import backend.util.JaxbJsonUtil;
 
 public class JAXBUtilJSONUnitTest {
 
@@ -50,7 +50,7 @@ public class JAXBUtilJSONUnitTest {
 	@Test
 	public void testUnmarshal() throws Exception{
 		InputStream is = new ByteArrayInputStream(expected.getBytes("UTF-8"));
-		SimpleObject unSo = JAXBUtilJSON.unmarshal(is, SimpleObject.class);
+		SimpleObject unSo = JaxbJsonUtil.unmarshal(is, SimpleObject.class);
 		assertNotNull(unSo);
 		assertEquals(15, unSo.getSomeInt());
 		assertEquals("testString", unSo.getSomeString());
@@ -59,7 +59,7 @@ public class JAXBUtilJSONUnitTest {
 
 	@Test
 	public void testUnmarshalFromString() throws Exception{
-		SimpleObject unSo = JAXBUtilJSON.unmarshalFromString(expected, SimpleObject.class);
+		SimpleObject unSo = JaxbJsonUtil.unmarshalFromString(expected, SimpleObject.class);
 		assertNotNull(unSo);
 		assertEquals(15, unSo.getSomeInt());
 		assertEquals("testString", unSo.getSomeString());
@@ -68,12 +68,12 @@ public class JAXBUtilJSONUnitTest {
 
 	@Test
 	public void testMarshalToStringObject_SimpleCall() {
-		assertNotNull(JAXBUtilJSON.marshalToString(so));
+		assertNotNull(JaxbJsonUtil.marshalToString(so));
 	}
 
 	@Test
 	public void testMarshalToString_extendedCall() {
-		String result = JAXBUtilJSON.marshalToString(so, SimpleObject.class);
+		String result = JaxbJsonUtil.marshalToString(so, SimpleObject.class);
 		assertTrue(result.contains("\"simpleObject\" : {"));
 		assertTrue(result.contains("\"someBoolean\" : true,"));
 		assertTrue(result.contains("\"someInt\" : 15,"));
@@ -83,28 +83,28 @@ public class JAXBUtilJSONUnitTest {
 	@Test
 	public void testMarshalOutputStream_simpleCall() {
 		ByteArrayOutputStream bais = new ByteArrayOutputStream();
-		JAXBUtilJSON.marshal(so, bais);
+		JaxbJsonUtil.marshal(so, bais);
 		assertNotNull(bais);
-		JAXBUtilJSON.marshal(so, System.out);
+		JaxbJsonUtil.marshal(so, System.out);
 	}
 
 	@Test
 	public void testMarshalObjectOutputStreamClassOfQextendsObject() {
 		ByteArrayOutputStream bais = new ByteArrayOutputStream();
-		JAXBUtilJSON.marshal(so, bais, SimpleObject.class);
+		JaxbJsonUtil.marshal(so, bais, SimpleObject.class);
 		assertNotNull(bais);
 		
-		JAXBUtilJSON.marshal(so, System.out, SimpleObject.class);
+		JaxbJsonUtil.marshal(so, System.out, SimpleObject.class);
 	}
 	
 	@Test
 	public void whenContextParamsThenMarshalWithContextParams() throws Exception{
-		JAXBUtilJSON.OperationProperties[] params = new JAXBUtilJSON.OperationProperties[]{JAXBUtilJSON.OperationProperties.NO_ROOT, JAXBUtilJSON.OperationProperties.NO_FORMATTED_OUTPUT};
+		JaxbJsonUtil.OperationProperties[] params = new JaxbJsonUtil.OperationProperties[]{JaxbJsonUtil.OperationProperties.NO_ROOT, JaxbJsonUtil.OperationProperties.NO_FORMATTED_OUTPUT};
 		
-		String expected = JAXBUtilJSON.marshalToString(so, SimpleObject.class, params);
+		String expected = JaxbJsonUtil.marshalToString(so, SimpleObject.class, params);
 		assertTrue(!expected.contains("simpleObject"));
 		
-		expected = JAXBUtilJSON.marshalToString(so);
+		expected = JaxbJsonUtil.marshalToString(so);
 		assertTrue(expected.contains("simpleObject"));
 		
 		assertEquals(UnmarshallerProperties.JSON_INCLUDE_ROOT, MarshallerProperties.JSON_INCLUDE_ROOT);
@@ -113,37 +113,37 @@ public class JAXBUtilJSONUnitTest {
 	
 	@Test(expected = Exception.class)
 	public void givenNullTypeWhenUnmarshalToStringThenException(){
-		JAXBUtilJSON.unmarshalFromString("", null);
+		JaxbJsonUtil.unmarshalFromString("", null);
 	}
 	
 	@Test(expected = Exception.class)
 	public void givenNullTypeAndNullJsonWhenUnmarshalToStringThenException(){
-		JAXBUtilJSON.unmarshalFromString(null, null);
+		JaxbJsonUtil.unmarshalFromString(null, null);
 	}
 	
 	@Test(expected = Exception.class)
 	public void givenNullTypeWhenUnmarshalThenException() throws Exception{
-		JAXBUtilJSON.unmarshal(new ByteArrayInputStream("".getBytes("utf-8")), null);
+		JaxbJsonUtil.unmarshal(new ByteArrayInputStream("".getBytes("utf-8")), null);
 	}
 	
 	@Test(expected = Exception.class)
 	public void givenNullTypeAndInputStreamWhenUnmarshalThenException(){
-		JAXBUtilJSON.unmarshalFromString(null, null);
+		JaxbJsonUtil.unmarshalFromString(null, null);
 	}
 	
 	@Test(expected = Exception.class)
 	public void givenNullObjectWhenMarshalThenException(){
-		JAXBUtilJSON.marshal(null, new ByteArrayOutputStream());
+		JaxbJsonUtil.marshal(null, new ByteArrayOutputStream());
 	}
 	
 	@Test(expected = Exception.class)
 	public void givenNullOutputStreamWhenMarshalThenException(){
-		JAXBUtilJSON.marshal(new SimpleObject(), null);
+		JaxbJsonUtil.marshal(new SimpleObject(), null);
 	}
 	
 	@Test(expected = Exception.class)
 	public void givenNullObjectWhenMarshalToStringThenException(){
-		JAXBUtilJSON.marshalToString(null);
+		JaxbJsonUtil.marshalToString(null);
 	}
 	
 	@XmlRootElement

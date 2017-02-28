@@ -1,4 +1,4 @@
-package backend.helper;
+package backend.util.helper;
 
 import static org.junit.Assert.assertTrue;
 
@@ -10,7 +10,7 @@ import java.util.List;
 import org.junit.Test;
 
 import backend.dto.ResultBean;
-import backend.helper.CollectionHelper;
+import backend.util.helper.CollectionHelper;
 
 public class CollectionHelperUnitTest {
 

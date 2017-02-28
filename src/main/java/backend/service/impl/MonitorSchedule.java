@@ -3,9 +3,9 @@ package backend.service.impl;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import backend.exception.MonitorException;
-import backend.informant.Informant;
 import backend.monitor.SubsystemMonitor;
-import backend.schedule.MonitorExecutor;
+import backend.monitor.executor.MonitorExecutor;
+import backend.monitor.informant.Informant;
 
 public class MonitorSchedule {
 	

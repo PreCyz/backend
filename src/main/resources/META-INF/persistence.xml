@@ -27,6 +27,7 @@
 		<class>backend.jpa.AutoIncrementEntry</class>
 		<class>backend.jpa.entity.log.LogEvent</class>
 		<class>backend.jpa.entity.log.LogLogin</class>
+		<class>backend.dto.LoggedUser</class>
 		
 	</persistence-unit>
 	

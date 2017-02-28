@@ -1,4 +1,4 @@
-package backend.util;
+package backend.util.helper;
 
 public class LoggerHelper {
 	

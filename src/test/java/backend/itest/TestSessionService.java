@@ -44,7 +44,9 @@ public final class TestSessionService implements SessionService {
 	@PostConstruct
 	public void initService() {
 		LoggedUser user = new LoggedUser();
-		user.setUserName("TEST_userName");
+		user.setFirstName("FirstName");
+		user.setLastName("lastName");
+		user.setEmail("email@oo.com");
 		user.setPassword("TestPassword");
 		user.setUserLogin("testLogin");
 		user.setSessionId(getSessionId());

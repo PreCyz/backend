@@ -1,4 +1,4 @@
-package backend.helper;
+package backend.util.helper;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.MockitoAnnotations;
 
-import backend.helper.MessageHelper;
+import backend.util.helper.MessageHelper;
 
 public class MessageHelperUnitTest {
 	

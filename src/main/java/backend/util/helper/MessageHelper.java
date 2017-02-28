@@ -1,4 +1,4 @@
-package backend.helper;
+package backend.util.helper;
 
 import java.text.MessageFormat;
 import java.util.Locale;

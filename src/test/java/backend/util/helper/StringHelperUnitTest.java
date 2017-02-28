@@ -1,4 +1,4 @@
-package backend.helper;
+package backend.util.helper;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -8,7 +8,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import backend.AbstractUnitTest;
-import backend.helper.StringHelper;
+import backend.util.helper.StringHelper;
 
 public class StringHelperUnitTest extends AbstractUnitTest {
 

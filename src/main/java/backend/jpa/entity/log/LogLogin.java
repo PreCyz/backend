@@ -17,7 +17,7 @@ import backend.jpa.Entry;
 import backend.jpa.LazyLoading;
 
 @Entity
-@Table(name = "LOGGER_LOGIN")
+@Table(name = "LOG_LOGIN", schema = "springDB")
 @Access(AccessType.FIELD)
 //@Customizer(LogDBEventCustomizer.class)
 public class LogLogin extends AutoIncrementEntry implements LazyLoading {

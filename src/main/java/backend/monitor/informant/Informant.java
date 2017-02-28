@@ -1,4 +1,4 @@
-package backend.informant;
+package backend.monitor.informant;
 
 import backend.dto.AccidentDetails;
 import backend.exception.MonitorException;

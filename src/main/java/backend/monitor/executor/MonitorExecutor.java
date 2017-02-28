@@ -1,11 +1,11 @@
-package backend.schedule;
+package backend.monitor.executor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import backend.informant.Informant;
 import backend.monitor.SubsystemMonitor;
+import backend.monitor.informant.Informant;
 
 public class MonitorExecutor implements Serializable {
 

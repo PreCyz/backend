@@ -1,4 +1,4 @@
-package backend.util;
+package backend.mapper;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser.Feature;

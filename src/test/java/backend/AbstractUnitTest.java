@@ -15,10 +15,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import backend.config.TestCoreConfig;
 import backend.exception.ApplicationUncheckedException;
-import backend.helper.StringHelper;
 import backend.itest.TestSessionService;
 import backend.service.SessionService;
 import backend.servlet.Log4jInitServlet;
+import backend.util.helper.StringHelper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes={TestCoreConfig.class})

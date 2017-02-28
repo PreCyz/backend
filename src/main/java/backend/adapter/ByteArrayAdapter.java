@@ -2,7 +2,7 @@ package backend.adapter;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
-import backend.helper.StringHelper;
+import backend.util.helper.StringHelper;
 
 public class ByteArrayAdapter extends XmlAdapter<String, byte[]> {
 

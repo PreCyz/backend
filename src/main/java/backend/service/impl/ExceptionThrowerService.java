@@ -3,7 +3,7 @@ package backend.service.impl;
 import org.apache.commons.logging.Log;
 
 import backend.exception.ApplicationUncheckedException;
-import backend.helper.StringHelper;
+import backend.util.helper.StringHelper;
 
 public class ExceptionThrowerService {
 	
@@ -31,7 +31,7 @@ public class ExceptionThrowerService {
 		}
 	}
 	
-	private void logAndThrowException(String paramName) {
+	public void logAndThrowException(String paramName) {
 		String errorInfo = String.format("%s - empty parameter [%s].", serviceName, paramName);
 		logger.error(errorInfo);
 		throw new ApplicationUncheckedException(errorInfo, EXCEPTION_MESSAGE_PREFIX, new String[]{serviceName, paramName});

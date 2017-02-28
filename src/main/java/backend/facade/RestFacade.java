@@ -28,8 +28,4 @@ public interface RestFacade extends ServiceFacade {
 	@Produces(MediaType.TEXT_PLAIN)
 	String test();
 	
-	/*@Path("/login/{login}/hashedPassword")
-	@Produces(MediaType.APPLICATION_JSON)
-	LoggedUser login(@PathParam("loginDetails")String login, @PathParam("hashedPassword")String hashedPassword);
-*/
 }

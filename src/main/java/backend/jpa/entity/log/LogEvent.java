@@ -14,7 +14,7 @@ import backend.jpa.AutoIncrementEntry;
 import backend.jpa.Entry;
 
 @Entity
-@Table(name = "LOGGER_EVENT")
+@Table(name = "LOG_EVENT", schema = "springDB")
 @Access(AccessType.FIELD)
 public class LogEvent extends AutoIncrementEntry {
 

@@ -2,7 +2,7 @@ package backend.monitor;
 
 import javax.sql.DataSource;
 
-import backend.informant.Informant;
+import backend.monitor.informant.Informant;
 
 public class MySqlMonitor extends DatabaseMonitor {
 

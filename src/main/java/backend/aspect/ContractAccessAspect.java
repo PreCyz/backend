@@ -3,9 +3,9 @@ package backend.aspect;
 import backend.annotation.SecurityGuard;
 import backend.dto.LoggedUser;
 import backend.exception.AspectException;
-import backend.helper.StringHelper;
 import backend.initiator.LoggerInitiator;
 import backend.service.SessionService;
+import backend.util.helper.StringHelper;
 
 public class ContractAccessAspect extends LoggerInitiator {
 

@@ -42,7 +42,7 @@ public class CrudJpaIT extends AbstractIT {
 		LogLogin logLogin = new LogLogin();
 		logLogin.setAgentName("Mozilla FireFox");
 		logLogin.setLogDate(LocalDateTime.now());
-		logLogin.setUserName(sessionService.getUserWithActualSession().getUserName());
+		logLogin.setUserName(sessionService.getUserWithActualSession().getUserLogin());
 		return logLogin;
 	}
 	

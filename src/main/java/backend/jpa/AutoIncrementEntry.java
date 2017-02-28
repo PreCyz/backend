@@ -9,7 +9,7 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.TableGenerator;
 
 @MappedSuperclass
-@TableGenerator(name="tableGenerator", initialValue = 0, allocationSize = 1)
+@TableGenerator(name="tableGenerator", initialValue = 0, allocationSize = 1, schema = "springDB")
 public class AutoIncrementEntry implements Entry, Serializable {
 	
 	private static final long serialVersionUID = -6893249505923633181L;

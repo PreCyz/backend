@@ -10,8 +10,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import backend.config.TestCoreConfig;
-import backend.helper.StringHelper;
 import backend.servlet.Log4jInitServlet;
+import backend.util.helper.StringHelper;
 
 public class ITLauncher {
 	

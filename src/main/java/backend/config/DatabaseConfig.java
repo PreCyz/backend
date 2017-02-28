@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
-import backend.helper.StringHelper;
+import backend.util.helper.StringHelper;
 
 @Configuration
 public class DatabaseConfig {

@@ -12,9 +12,9 @@ import org.apache.cxf.transport.http.AbstractHTTPDestination;
 
 import backend.dto.LoggedUser;
 import backend.exception.ApplicationUncheckedException;
-import backend.helper.MessageHelper;
-import backend.helper.StringHelper;
 import backend.service.SessionService;
+import backend.util.helper.MessageHelper;
+import backend.util.helper.StringHelper;
 
 public class SessionServiceImpl implements SessionService {
 	

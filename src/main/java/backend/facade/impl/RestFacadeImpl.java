@@ -20,9 +20,7 @@ public class RestFacadeImpl implements RestFacade {
 
 	@Override
 	public LoggedUser login(String login, String pass) {
-		LoggedUser loggedUser = new LoggedUser();
-		loggedUser.setUserLogin("gawa");
-		return loggedUser;
+		return authenticationService.getLoggedUser(new LoginDetails(login, pass));
 	}
 
 	@Override

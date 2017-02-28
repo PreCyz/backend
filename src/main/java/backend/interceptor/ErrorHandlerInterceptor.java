@@ -19,14 +19,14 @@ public class ErrorHandlerInterceptor extends AbstractPhaseInterceptor<Message> {
 
 	@Override
 	public void handleMessage(Message message) throws Fault {
-		/*
+		
 		Exception ex = message.getContent(Exception.class);
 		
 		ErrorDetails details = new ErrorDetails(Response.Status.BAD_REQUEST.getStatusCode(), ex.getMessage());
 
 		Response response = Response.status(Response.Status.BAD_REQUEST).entity(details).build();
 		
-		message.getExchange().put(Response.class, response);*/
+		message.getExchange().put(Response.class, response);
 	}
 
 }

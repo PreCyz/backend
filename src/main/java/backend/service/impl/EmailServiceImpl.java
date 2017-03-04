@@ -48,7 +48,8 @@ public class EmailServiceImpl implements EmailService {
 		CommandMap.setDefaultCommandMap(mc);
 	}
 	
-	public void sendEmail(String subject, String content, String[] to, String[] cc, String[] bcc, File[] files, String[] fileNames) {
+	public void sendEmail(String subject, String content, String[] to, String[] cc, String[] bcc, File[] files, 
+			String[] fileNames) {
 		try {
 			
 			Properties mailProps = new Properties();
@@ -80,7 +81,8 @@ public class EmailServiceImpl implements EmailService {
 				for (int i = 0; i < files.length; ++i) {
 					File file = files[i];
 					if (!file.exists()) {
-						throw new ApplicationUncheckedException("File for email attachement not exists under path: " + file.getAbsolutePath());
+						throw new ApplicationUncheckedException("File for email attachement not exists under path: " 
+								+ file.getAbsolutePath());
 					}
 					// Part two is attachment
 					messageBodyPart = new MimeBodyPart();

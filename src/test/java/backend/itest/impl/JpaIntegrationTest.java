@@ -45,7 +45,7 @@ public class JpaIntegrationTest extends AbstractIT {
         BufferedReader d = new BufferedReader(new InputStreamReader((InputStream) upackage.getContent()));
         String line = null;
         while ((line = d.readLine()) != null) {
-            if(line.endsWith(".class")) {
+            if (line.endsWith(".class")) {
                classes.add(Class.forName(dottedPackage+"."+line.substring(0,line.lastIndexOf('.'))));
             }
         }
@@ -55,11 +55,12 @@ public class JpaIntegrationTest extends AbstractIT {
 	private void givenDataSourceWhenCountRecordsThenReturnActualNumberOfRecords(Class<?> type) throws Exception {
 		displayTestName();
 		Long numberOfRecords = countRecords(type);
-		String msg = String.format("Aktualnie w bazie danych jest %d rekordów %s.", numberOfRecords, type.getSimpleName());
+		String msg = String.format("Aktualnie w bazie danych jest %d rekordów %s.", numberOfRecords, 
+				type.getSimpleName());
 		assertion(msg, numberOfRecords >= 0);
 	}
 	
-	private Long countRecords(Class<?> entity){
+	private Long countRecords(Class<?> entity) {
 		String persistanceUnitName = getPersistanceUnitName(dataSource);
 		Map<String, String> properties = getPropertiesMap(dataSource);
 		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory(persistanceUnitName, properties);
@@ -69,7 +70,7 @@ public class JpaIntegrationTest extends AbstractIT {
 		return (Long)query.getSingleResult();
 	}
 	
-	private Map<String, String> getPropertiesMap(DataSource dataSource){
+	private Map<String, String> getPropertiesMap(DataSource dataSource) {
 		org.apache.tomcat.jdbc.pool.DataSource jpaDataSource = (org.apache.tomcat.jdbc.pool.DataSource) dataSource;
 		Map<String, String> map = new HashMap<>();
 		String dbPassword = jpaDataSource.getDbProperties().getProperty("password");
@@ -81,7 +82,7 @@ public class JpaIntegrationTest extends AbstractIT {
 		return map;
     }
 	
-	private String getPersistanceUnitName(javax.sql.DataSource dataSource){
+	private String getPersistanceUnitName(javax.sql.DataSource dataSource) {
 		org.apache.tomcat.jdbc.pool.DataSource jpaDataSource = (org.apache.tomcat.jdbc.pool.DataSource) dataSource;
 		return jpaDataSource.getName();
 	}

@@ -2,8 +2,6 @@ package backend.adapter;
 
 import static org.junit.Assert.*;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
@@ -15,33 +13,20 @@ import org.junit.Test;
 import backend.adapter.YearAdapter;
 
 public class YearAdapterUnitTest {
-	private DateFormat df;
+
 	private YearAdapter adapter;
 	private Calendar calendar; 
 
 	@Before
 	public void setUp() throws Exception {
 		adapter = new YearAdapter();
-		df = new SimpleDateFormat("yyyy");
 		calendar = Calendar.getInstance();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		df = null;
 		adapter = null;
 		calendar = null;
-	}
-	
-	@Test
-	public void givenDateFormatYYYYWhenCompareWithYYYYThenEquals() throws Exception {
-		assertEquals(df, adapter.df);
-	}
-	
-	@Test
-	public void givenDateFormatYYYYWhenCompareWithDateFormatMMThenNotEquals() throws Exception {
-		df = new SimpleDateFormat("mm");
-		assertNotEquals(df, adapter.df);
 	}
 	
 	@Test

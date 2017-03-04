@@ -22,14 +22,18 @@ import org.eclipse.persistence.jaxb.MarshallerProperties;
 
 import backend.exception.ApplicationUncheckedException;
 
+import static backend.util.BackendConstants.UTF8_CODING; 
+
 public class JaxbJsonUtil {
 	
-	private static final Map<Class<? extends Object>, JAXBContext> contexts = new HashMap<Class<? extends Object>, JAXBContext>();
-	private static String UTF8_CODING = "UTF-8";
+	private static final Map<Class<? extends Object>, JAXBContext> contexts = 
+			new HashMap<Class<? extends Object>, JAXBContext>();
 	
 	public static enum OperationProperties { 
-		NO_ROOT(MarshallerProperties.JSON_INCLUDE_ROOT, false), NO_FORMATTED_OUTPUT(Marshaller.JAXB_FORMATTED_OUTPUT, false),
-		INCLUDE_ROOT(MarshallerProperties.JSON_INCLUDE_ROOT, true), FORMATTED_OUTPUT(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		NO_ROOT(MarshallerProperties.JSON_INCLUDE_ROOT, false), 
+		NO_FORMATTED_OUTPUT(Marshaller.JAXB_FORMATTED_OUTPUT, false),
+		INCLUDE_ROOT(MarshallerProperties.JSON_INCLUDE_ROOT, true), 
+		FORMATTED_OUTPUT(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		
 		private String key;
 		private boolean value;
@@ -60,7 +64,7 @@ public class JaxbJsonUtil {
 		}
 	}
 
-	//metoda utworzona dla czystości kodu, w tym miejscu można ustawić parametry dla JAXBContext, jeśli jakieś są potrzebne
+	/** Method sets JAXBContext parameters if needed */
 	private static Properties contextProperty() {
 		Properties ctxProperties = new Properties();
 		ctxProperties.setProperty(JAXBContextProperties.MEDIA_TYPE, "application/json");

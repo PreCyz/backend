@@ -62,7 +62,7 @@ public class SessionServiceUnitTest {
 	}
 	
 	@Test
-	public void givenMocksWhenGetUserFromSessionThenReturnLoggeUser() throws Exception{
+	public void givenMocksWhenGetUserFromSessionThenReturnLoggeUser() throws Exception {
 		doReturn(new LoggedUser()).when(mockService).getUserWithActualSession();
 		assertNotNull(mockService.getUserWithActualSession());
 	}

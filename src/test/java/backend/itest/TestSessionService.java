@@ -19,7 +19,8 @@ public final class TestSessionService implements SessionService {
 	}
 	
 	public HttpSession getSession() {
-		System.out.println("getSession() - this method should not be used during integration tests. Check where exactly method is used and fix it !!!");
+		System.out.println("getSession() - this method should not be used during integration tests. "
+				+ "Check where exactly method is used and fix it !!!");
 		return null;
 	}
 	
@@ -28,7 +29,7 @@ public final class TestSessionService implements SessionService {
 		return (A) sessionMap.get(key);
 	}
 	
-	public String getSessionId(){
+	public String getSessionId() {
 		return "SomeSessionID";
 	}
 
@@ -36,7 +37,8 @@ public final class TestSessionService implements SessionService {
 		String sessionId = getSessionId();
 		LoggedUser user = getFromSession(sessionId, LoggedUser.class);
 		if(hasUserWrongSession(sessionId, user)){
-			throw new ApplicationUncheckedException("User does not have actual session.", EXCEPTION_MESSAGE_PREFIX + "user");
+			throw new ApplicationUncheckedException("User does not have actual session.", 
+					EXCEPTION_MESSAGE_PREFIX + "user");
 		}
 		return user;
 	}

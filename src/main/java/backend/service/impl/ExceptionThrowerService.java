@@ -34,6 +34,7 @@ public class ExceptionThrowerService {
 	public void logAndThrowException(String paramName) {
 		String errorInfo = String.format("%s - empty parameter [%s].", serviceName, paramName);
 		logger.error(errorInfo);
-		throw new ApplicationUncheckedException(errorInfo, EXCEPTION_MESSAGE_PREFIX, new String[]{serviceName, paramName});
+		throw new ApplicationUncheckedException(errorInfo, EXCEPTION_MESSAGE_PREFIX, 
+				new String[]{serviceName, paramName});
 	}
 }

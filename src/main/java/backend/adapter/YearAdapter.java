@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 public class YearAdapter extends XmlAdapter<String, Date> {
 
-	DateFormat df = new SimpleDateFormat("yyyy");
+	private DateFormat df = new SimpleDateFormat("yyyy");
 
 	public Date unmarshal(String date) throws Exception {
 		return df.parse(date);

@@ -2,6 +2,7 @@ package backend.util.helper;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import static backend.util.BackendConstants.UTF8_CODING;
 
 public class StringHelper {
 	
@@ -57,7 +58,7 @@ public class StringHelper {
 		}
 		
 		try {
-			return URLEncoder.encode(urlString, "UTF-8");
+			return URLEncoder.encode(urlString, UTF8_CODING);
 		} catch (UnsupportedEncodingException e) {
 			throw new RuntimeException(e);//should not happen
 		}

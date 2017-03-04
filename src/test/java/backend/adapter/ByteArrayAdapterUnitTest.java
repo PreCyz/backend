@@ -12,12 +12,12 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import backend.adapter.ByteArrayAdapter;
+import backend.adapter.ByteArrayUTF8Adapter;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ByteArrayAdapterUnitTest {
 	
-	private ByteArrayAdapter adapter;
+	private ByteArrayUTF8Adapter adapter;
 	private String string;
 	private byte[] byteArray;
 	
@@ -25,7 +25,7 @@ public class ByteArrayAdapterUnitTest {
 
 	@Before
 	public void setUp() throws Exception {
-		adapter = new ByteArrayAdapter();
+		adapter = new ByteArrayUTF8Adapter();
 		string = "someValue";
 		byteArray = string.getBytes(UTF8);
 	}

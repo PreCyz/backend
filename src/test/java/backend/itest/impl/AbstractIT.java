@@ -51,10 +51,10 @@ public abstract class AbstractIT {
 		BigDecimal result = duration.divide(new BigDecimal(nanoValue), scale, RoundingMode.HALF_UP);
 		timeUnit = TimeUnit.SECONDS;
 		
-		if(result.doubleValue() >= secondsInMinute && result.doubleValue() < secondsInHour){
+		if (result.doubleValue() >= secondsInMinute && result.doubleValue() < secondsInHour) {
 			result = duration.divide(new BigDecimal(secondsInMinute), scale, RoundingMode.HALF_UP);
 			timeUnit = TimeUnit.MINUTES;
-		} else if (result.doubleValue() >= secondsInHour){
+		} else if (result.doubleValue() >= secondsInHour) {
 			result = duration.divide(new BigDecimal(secondsInHour), scale, RoundingMode.HALF_UP);
 			timeUnit = TimeUnit.HOURS;
 		}

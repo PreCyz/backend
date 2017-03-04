@@ -22,7 +22,7 @@ public interface RestFacade extends ServiceFacade {
 	@Path("/login/{login}/{pass}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	LoggedUser login(@PathParam("login")String login, @PathParam("pass")String pass);
+	LoggedUser login(@PathParam("login") String login, @PathParam("pass") String pass);
 	
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)

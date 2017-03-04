@@ -64,11 +64,13 @@ public class SessionServiceImpl implements SessionService {
 	public LoggedUser getUserWithActualSession() {
 		String sessionId = getSessionId();
 		if(StringHelper.empty(sessionId)) {
-			throw new ApplicationUncheckedException(MessageHelper.getMessage(getMsgKey("session"), null), getMsgKey("session"));
+			throw new ApplicationUncheckedException(MessageHelper.getMessage(getMsgKey("session"), null), 
+					getMsgKey("session"));
 		}
 		LoggedUser user = getFromSession(sessionId, LoggedUser.class);
 		if(hasUserWrongSession(sessionId, user)) {
-			throw new ApplicationUncheckedException(MessageHelper.getMessage(getMsgKey("user"), null), getMsgKey("user"));
+			throw new ApplicationUncheckedException(MessageHelper.getMessage(getMsgKey("user"), null), 
+					getMsgKey("user"));
 		}
 		return user;
 	}

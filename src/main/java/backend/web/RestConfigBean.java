@@ -5,7 +5,8 @@ import java.util.Properties;
 
 import backend.dao.RestRequester;
 
-public class RestConfigBean implements Serializable{
+public class RestConfigBean implements Serializable {
+	
 	private static final long serialVersionUID = -7730956263651546347L;
 	
 	private String serverUrl;

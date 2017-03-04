@@ -24,7 +24,8 @@ public class ContractAccessAspect extends LoggerInitiator {
 		}
 		LoggedUser user = sessionService.getUserWithActualSession();
 		if ( !hasUserAccessToContract(contractNumber, user) ) {
-			String errorMsg = String.format("User [%s] does not have access to contract [%s].", user.getUserLogin(), contractNumber);
+			String errorMsg = String.format("User [%s] does not have access to contract [%s].", 
+					user.getUserLogin(), contractNumber);
 			logger.error(errorMsg);
 			throw new AspectException(errorMsg, ERROR_MSG_KEY, new String[]{user.getUserLogin(), contractNumber});
 		}

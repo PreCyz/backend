@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.fail;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import org.junit.After;
@@ -35,11 +34,6 @@ public class DateAdapterUnitTest {
 		adapter = null;
 		dateInString = null;
 		year = month = day_of_math = -1;
-	}
-
-	@Test
-	public void givenDateFormatWhenCheckFormatThenYYYY_MM_DD() {
-		assertEquals(adapter.df, new SimpleDateFormat("yyyy-MM-dd"));
 	}
 
 	@Test

@@ -28,7 +28,8 @@ public class MessageHelperUnitTest {
 	@Test
 	public void givenProperKeyAndParamsWhenGetMessageThenReturnMessage() {
 		String key = "dao.task.start";
-		String expected = String.format("start task: \"%s\" login: \"%s\" taskId: %s", messageParams[0], messageParams[1], messageParams[2]);
+		String expected = String.format("start task: \"%s\" login: \"%s\" taskId: %s", 
+				messageParams[0], messageParams[1], messageParams[2]);
 		String actual = MessageHelper.getMessage(key, messageParams);
 		assertNotNull(actual);
 		assertEquals(expected, actual);
@@ -64,7 +65,8 @@ public class MessageHelperUnitTest {
 	@Test
 	public void givenProperKeyAndParamsWhenGetMessageOrNullThenReturnMessage() {
 		String key = "dao.task.start";
-		String expected = String.format("start task: \"%s\" login: \"%s\" taskId: %s", messageParams[0], messageParams[1], messageParams[2]);
+		String expected = String.format("start task: \"%s\" login: \"%s\" taskId: %s", 
+				messageParams[0], messageParams[1], messageParams[2]);
 		String actual = MessageHelper.getMessage(key, messageParams);
 		assertNotNull(actual);
 		assertEquals(expected, actual);
@@ -109,7 +111,7 @@ public class MessageHelperUnitTest {
 	}
 	
 	@Test
-	public void givenStringWhenPutNumbersToBracketsReturnProperValue(){
+	public void givenStringWhenPutNumbersToBracketsReturnProperValue() {
 		int initialNumber = 0;
 		String value = "start task: \"{}\" login: \"{}\" taskId: {}";
 		String actual = MessageHelper.putNumbersToBrackets(value, initialNumber);
@@ -137,4 +139,5 @@ public class MessageHelperUnitTest {
 		expected = "start task: \"{-5}\" login: \"{-4}\" taskId: {-3}";
 		assertEquals(expected, actual);
 	}
+	
 }

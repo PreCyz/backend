@@ -18,9 +18,11 @@ import java.net.URL;
  * @author pgawedzki
  * 
  * Klasa umozliwia requesty restowe pod jakis URL. Wywoluje sie ja tak jak wzorzec Builder.
- * Aby wyslac pliki nalezy uzyc metody attach(...) a nastepnie ktorejs z metod response*(). Aby przeslac dane json'em nalezy uzyc metody post() lub invoke(...).
+ * Aby wyslac pliki nalezy uzyc metody attach(...) a nastepnie ktorejs z metod response*(). 
+ * Aby przeslac dane json'em nalezy uzyc metody post() lub invoke(...).
  * Wyslanie requesta realizuje metoda private invoke. Odpowiedz serwera zwracana jest jako String lub byte[].
- * Aby dobrac sie do odpowiedzi mozna wywolac jedna z metod: get(), post(...), invoke(...), responseAsString(), responseAsByteArray
+ * Aby dobrac sie do odpowiedzi mozna wywolac jedna z metod: get(), post(...), invoke(...), responseAsString(), 
+ * responseAsByteArray
  * Przykladowe wywolania: 1- wyslanie danych json'em, 2- przeslanie plikow 
  * 1) WebClient client = new WebClient.Builder(URL).create(); 
  *    String responseJson = client.post(requestJson);
@@ -240,7 +242,8 @@ public class WebClient {
 		private void boundary(String contentType) {
 			if (boundary == null) {
 				boundary = String.format("*****%d*****", System.currentTimeMillis());
-				String content = String.format("multipart/related; type=\"%s\"; boundary=\"%s\"", contentType, boundary);
+				String content = String.format("multipart/related; type=\"%s\"; boundary=\"%s\"", contentType, 
+						boundary);
 				httpConn.setRequestProperty("Content-Type", content);
 			}
 		}

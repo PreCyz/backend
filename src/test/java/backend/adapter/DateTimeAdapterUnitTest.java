@@ -2,9 +2,7 @@ package backend.adapter;
 
 import static org.junit.Assert.*;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -15,35 +13,22 @@ import org.junit.Test;
 import backend.adapter.DateTimeAdapter;
 
 public class DateTimeAdapterUnitTest {
-	private DateFormat df;
+	
 	private DateTimeAdapter adapter;
 	private Calendar calendar; 
 
 	@Before
 	public void setUp() throws Exception {
 		adapter = new DateTimeAdapter();
-		df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		calendar = Calendar.getInstance();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		df = null;
 		adapter = null;
 		calendar = null;
 	}
 
-	@Test
-	public void givenProperDateFormatWhenCompareWith_yyyy_MM_dd_HH_mm_ss_ThenEquals() throws Exception {
-		assertEquals(df, adapter.df);
-	}
-	
-	@Test
-	public void givenProperDateFormatWhenCompareWithDateFormatMMThenNotEquals() throws Exception {
-		df = new SimpleDateFormat("MM");
-		assertNotEquals(df, adapter.df);
-	}
-	
 	@Test
 	public void givenProperDateTimeStringWhenUnmarshalThenReturnDateTime() throws Exception {
 		int year = 1111;

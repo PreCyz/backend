@@ -7,7 +7,7 @@ import org.eclipse.persistence.expressions.ExpressionBuilder;
 
 public class ExampleCustomizer implements DescriptorCustomizer {
 
-	private final String COLUMN_NAME = "MESSAGE";
+	private final String COLUMN_NAME = "DATABASE_COLUMN_NAME";
 	
 	@Override
 	public void customize(ClassDescriptor classDescriptor) throws Exception {

@@ -140,7 +140,8 @@ public class StringHelperUnitTest extends AbstractUnitTest {
 		assertEquals("", StringHelper.encodeURLParam(""));
 		String url = "<![CDATA[ <IMG SRC=\"  javascript:document.vulnerable=true;\"> ]]>";
 		String url2 = "String with spaces";
-		assertEquals("%3C%21%5BCDATA%5B+%3CIMG+SRC%3D%22+%0E+javascript%3Adocument.vulnerable%3Dtrue%3B%22%3E+%5D%5D%3E", StringHelper.encodeURLParam(url));
+		assertEquals("%3C%21%5BCDATA%5B+%3CIMG+SRC%3D%22+%0E+javascript%3Adocument.vulnerable%3Dtrue%3B%22%3E+%5D%5D%3E"
+				, StringHelper.encodeURLParam(url));
 		assertEquals("String+with+spaces", StringHelper.encodeURLParam(url2));
 	}
 	
@@ -171,7 +172,7 @@ public class StringHelperUnitTest extends AbstractUnitTest {
 	}
 	
 	@Test(expected = NullPointerException.class)
-	public void givenNullReplacementAndProperSymbolAndValueWhenEncodeThenThrowNullPointerException() throws Exception{
+	public void givenNullReplacementAndProperSymbolAndValueWhenEncodeThenThrowNullPointerException() throws Exception {
 		String properValue = "properValue";
 		String symbol = "proper";
 		StringHelper.encode(properValue, symbol, null);
@@ -206,4 +207,5 @@ public class StringHelperUnitTest extends AbstractUnitTest {
 		actual = StringHelper.extractBoolean(properValue);
 		assertFalse(actual);
 	}
+	
 }

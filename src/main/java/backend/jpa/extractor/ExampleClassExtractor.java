@@ -8,7 +8,7 @@ import backend.util.helper.StringHelper;
 
 public class ExampleClassExtractor extends ClassExtractor {
 
-	private final String COLUMN_NAME = "MESSAGE";
+	private final String COLUMN_NAME = "DATABASE_COLUMN_NAME";
 	
 	@SuppressWarnings("rawtypes")
 	@Override

@@ -5,10 +5,10 @@ import java.io.UnsupportedEncodingException;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
+import static backend.util.BackendConstants.UTF8_CODING;
+
 //@Converter(autoApply = false)
 public class BoxMessageResponseConverter implements AttributeConverter<String, byte[]> {
-
-	private static final String UTF_8 = "UTF-8";
 
 	@Override
 	public byte[] convertToDatabaseColumn(String blobMessage) {
@@ -16,7 +16,7 @@ public class BoxMessageResponseConverter implements AttributeConverter<String, b
 			if (blobMessage == null) {
 				return null;
 			}
-			return blobMessage.getBytes(UTF_8);
+			return blobMessage.getBytes(UTF8_CODING);
 		} catch (UnsupportedEncodingException e) {
 			return blobMessage.getBytes();
 		}
@@ -28,7 +28,7 @@ public class BoxMessageResponseConverter implements AttributeConverter<String, b
 			if (lob == null || lob.length == 0) {
 				return null;
 			}
-			return new String(lob, UTF_8);
+			return new String(lob, UTF8_CODING);
 		} catch (UnsupportedEncodingException e) {
 			return new String(lob);
 		}

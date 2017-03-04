@@ -14,6 +14,6 @@ import backend.dto.LoginDetails;
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL) //optional
 public interface WebServiceFacade extends ServiceFacade {
 	
-	@WebMethod LoggedUser login(@WebParam(name="loginDetails") LoginDetails loginDetails);
+	@WebMethod LoggedUser login(@WebParam(name = "loginDetails") LoginDetails loginDetails);
 
 }

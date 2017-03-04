@@ -10,4 +10,5 @@ public interface RestRequester {
 	int getResponseCode() throws IOException ;
 	String getResponseJson();
 	String getResponseSessionId();
+	
 }

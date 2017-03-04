@@ -26,6 +26,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import backend.util.JacksonUtilJson;
 
 public class JacksonJsonParserUnitTest {
+	
 	private Bean bean;
 
 	@Before
@@ -73,27 +74,27 @@ public class JacksonJsonParserUnitTest {
 	}
 	
 	@Test(expected = Exception.class)
-	public void givenNullTypeWhenUnmarshalToStringThenException(){
+	public void givenNullTypeWhenUnmarshalToStringThenException() {
 		JacksonUtilJson.unmarshalFromString("", null);
 	}
 	
 	@Test(expected = Exception.class)
-	public void givenNullTypeAndNullJsonWhenUnmarshalToStringThenException(){
+	public void givenNullTypeAndNullJsonWhenUnmarshalToStringThenException() {
 		JacksonUtilJson.unmarshalFromString(null, null);
 	}
 	
 	@Test(expected = Exception.class)
-	public void givenNullTypeWhenUnmarshalThenException() throws Exception{
-		JacksonUtilJson.unmarshal(new ByteArrayInputStream("".getBytes("utf-8")), null);
+	public void givenNullTypeWhenUnmarshalThenException() throws Exception {
+		JacksonUtilJson.unmarshal(new ByteArrayInputStream("".getBytes(BackendConstants.UTF8_CODING)), null);
 	}
 	
 	@Test(expected = Exception.class)
-	public void givenNullTypeAndInputStreamWhenUnmarshalThenException(){
+	public void givenNullTypeAndInputStreamWhenUnmarshalThenException() {
 		JacksonUtilJson.unmarshalFromString(null, null);
 	}
 	
 	@Test
-	public void givenNullObjectWhenMarshalThenException(){
+	public void givenNullObjectWhenMarshalThenException() {
 		OutputStream os = new ByteArrayOutputStream(); 
 		JacksonUtilJson.marshal(null, os);
 		assertTrue(os != null);
@@ -101,12 +102,12 @@ public class JacksonJsonParserUnitTest {
 	}
 	
 	@Test(expected = NullPointerException.class)
-	public void givenNullOutputStreamWhenMarshalThenException(){
+	public void givenNullOutputStreamWhenMarshalThenException() {
 		JacksonUtilJson.marshal(new Bean(null, true, 0, null), null);
 	}
 	
 	@Test
-	public void givenNullObjectWhenMarshalToStringThenException(){
+	public void givenNullObjectWhenMarshalToStringThenException() {
 		assertEquals("null", JacksonUtilJson.marshalToString(null));
 	}
 	

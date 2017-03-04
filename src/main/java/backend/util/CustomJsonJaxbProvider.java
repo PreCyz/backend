@@ -7,8 +7,6 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 
 public class CustomJsonJaxbProvider extends JacksonJaxbJsonProvider {
 	
-	
-
 	public static enum SerialFeatures {
 		WRAP_ROOT_VALUE (SerializationFeature.WRAP_ROOT_VALUE), 
 		INDENT_OUTPUT (SerializationFeature.INDENT_OUTPUT), 

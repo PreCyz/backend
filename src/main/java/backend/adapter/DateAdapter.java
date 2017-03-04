@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 public class DateAdapter extends XmlAdapter<String, Date> {
 
-	DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+	private DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
 	public Date unmarshal(String date) throws Exception {
 		return df.parse(date);

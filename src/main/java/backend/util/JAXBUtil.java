@@ -26,9 +26,12 @@ import javax.xml.transform.*;
 import javax.xml.transform.dom.*;
 import javax.xml.transform.stream.*;
 
+import static backend.util.BackendConstants.UTF8_CODING;
+
 public class JAXBUtil {
 
-	private static final Map<Class<? extends Object>, JAXBContext> contexts = new HashMap<Class<? extends Object>, JAXBContext>();
+	private static final Map<Class<? extends Object>, JAXBContext> contexts = 
+			new HashMap<Class<? extends Object>, JAXBContext>();
 	
 	public static org.w3c.dom.Document marshalToW3CDocument(Object object) {
 		Class<? extends Object> objectClass = object.getClass();
@@ -52,10 +55,6 @@ public class JAXBUtil {
 			throw new ApplicationUncheckedException("Error marshaling object " + object, e);
 		}
 	}
-	
-	/*Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
-				Marshaller marshaller = NewApplicationWizardBean.getMarshaller();
-				marshaller.marshal(wizard, document);*/
 	
 	public static Document marshal(Object object) {
 		Class<? extends Object> objectClass = object.getClass();
@@ -142,7 +141,7 @@ public class JAXBUtil {
 			ByteArrayOutputStream out = new ByteArrayOutputStream(); 
 			
 			marshaller.marshal(object, out);
-			return out.toString("UTF-8");
+			return out.toString(UTF8_CODING);
 		} catch (Exception e) {throw new ApplicationUncheckedException("Error in JAXBUtil.marshalToString()", e);}
 	}
 	
@@ -151,7 +150,7 @@ public class JAXBUtil {
 		JAXBContext context = getContext(type);
 		try {
 			Unmarshaller unmarshaller = context.createUnmarshaller();
-			return (A) unmarshaller.unmarshal(new ByteArrayInputStream(string.getBytes("UTF-8")));
+			return (A) unmarshaller.unmarshal(new ByteArrayInputStream(string.getBytes(UTF8_CODING)));
 		} catch (Exception e) {
 			throw new ApplicationUncheckedException("Error unmarshaling string " + string, e);
 		}

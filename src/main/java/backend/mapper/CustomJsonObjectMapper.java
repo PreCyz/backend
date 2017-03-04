@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class CustomJsonObjectMapper extends ObjectMapper {
+	
 	private static final long serialVersionUID = 8022149579749642253L;
 	
 	public CustomJsonObjectMapper() {

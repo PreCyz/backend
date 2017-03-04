@@ -48,8 +48,8 @@ public class JAXBUtilJSONUnitTest {
 	}
 
 	@Test
-	public void testUnmarshal() throws Exception{
-		InputStream is = new ByteArrayInputStream(expected.getBytes("UTF-8"));
+	public void testUnmarshal() throws Exception {
+		InputStream is = new ByteArrayInputStream(expected.getBytes(BackendConstants.UTF8_CODING));
 		SimpleObject unSo = JaxbJsonUtil.unmarshal(is, SimpleObject.class);
 		assertNotNull(unSo);
 		assertEquals(15, unSo.getSomeInt());
@@ -58,7 +58,7 @@ public class JAXBUtilJSONUnitTest {
 	}
 
 	@Test
-	public void testUnmarshalFromString() throws Exception{
+	public void testUnmarshalFromString() throws Exception {
 		SimpleObject unSo = JaxbJsonUtil.unmarshalFromString(expected, SimpleObject.class);
 		assertNotNull(unSo);
 		assertEquals(15, unSo.getSomeInt());
@@ -98,8 +98,11 @@ public class JAXBUtilJSONUnitTest {
 	}
 	
 	@Test
-	public void whenContextParamsThenMarshalWithContextParams() throws Exception{
-		JaxbJsonUtil.OperationProperties[] params = new JaxbJsonUtil.OperationProperties[]{JaxbJsonUtil.OperationProperties.NO_ROOT, JaxbJsonUtil.OperationProperties.NO_FORMATTED_OUTPUT};
+	public void whenContextParamsThenMarshalWithContextParams() throws Exception {
+		JaxbJsonUtil.OperationProperties[] params = new JaxbJsonUtil.OperationProperties[]{
+				JaxbJsonUtil.OperationProperties.NO_ROOT, 
+				JaxbJsonUtil.OperationProperties.NO_FORMATTED_OUTPUT
+		};
 		
 		String expected = JaxbJsonUtil.marshalToString(so, SimpleObject.class, params);
 		assertTrue(!expected.contains("simpleObject"));
@@ -117,37 +120,38 @@ public class JAXBUtilJSONUnitTest {
 	}
 	
 	@Test(expected = Exception.class)
-	public void givenNullTypeAndNullJsonWhenUnmarshalToStringThenException(){
+	public void givenNullTypeAndNullJsonWhenUnmarshalToStringThenException() {
 		JaxbJsonUtil.unmarshalFromString(null, null);
 	}
 	
 	@Test(expected = Exception.class)
-	public void givenNullTypeWhenUnmarshalThenException() throws Exception{
+	public void givenNullTypeWhenUnmarshalThenException() throws Exception {
 		JaxbJsonUtil.unmarshal(new ByteArrayInputStream("".getBytes("utf-8")), null);
 	}
 	
 	@Test(expected = Exception.class)
-	public void givenNullTypeAndInputStreamWhenUnmarshalThenException(){
+	public void givenNullTypeAndInputStreamWhenUnmarshalThenException() {
 		JaxbJsonUtil.unmarshalFromString(null, null);
 	}
 	
 	@Test(expected = Exception.class)
-	public void givenNullObjectWhenMarshalThenException(){
+	public void givenNullObjectWhenMarshalThenException() {
 		JaxbJsonUtil.marshal(null, new ByteArrayOutputStream());
 	}
 	
 	@Test(expected = Exception.class)
-	public void givenNullOutputStreamWhenMarshalThenException(){
+	public void givenNullOutputStreamWhenMarshalThenException() {
 		JaxbJsonUtil.marshal(new SimpleObject(), null);
 	}
 	
 	@Test(expected = Exception.class)
-	public void givenNullObjectWhenMarshalToStringThenException(){
+	public void givenNullObjectWhenMarshalToStringThenException() {
 		JaxbJsonUtil.marshalToString(null);
 	}
 	
 	@XmlRootElement
-	public static class SimpleObject{
+	public static class SimpleObject {
+		
 		private String someString;
 		private int someInt;
 		private boolean someBoolean;
@@ -171,6 +175,5 @@ public class JAXBUtilJSONUnitTest {
 			this.someBoolean = someBoolean;
 		}
 	}
-	
 	
 }

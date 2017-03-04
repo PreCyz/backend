@@ -66,9 +66,10 @@ public class CrudJPAImpl implements CrudJPA {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <A> List<A> getListFromNamedQuery(EntityManager entityManager, Class<A> type, String queryName, Map<String, String> params) {
+	public <A> List<A> getListFromNamedQuery(EntityManager entityManager, Class<A> type, String queryName, 
+			Map<String, String> params) {
 		Query query = entityManager.createNamedQuery(queryName);
-		for(String key : params.keySet()){
+		for(String key : params.keySet()) {
 			query.setParameter(key, params.get(key));
 		}
 		List<A> result = query.getResultList();

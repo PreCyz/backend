@@ -71,7 +71,9 @@ public class BoxDAOImpl extends GeneralDAO implements BoxDAO {
 		try {
 			Map<String, String> params = new HashMap<>();
 			params.put("userId", userName);
-			readed.addAll(jpaRepository.findListWithNamedQuery(String.class, "BoxMessageStatus.findCaseIdByUserId", params));
+			readed.addAll(
+					jpaRepository.findListWithNamedQuery(String.class, "BoxMessageStatus.findCaseIdByUserId", params)
+			);
 		} catch (Exception e) {
 			String errMsg = "BoxDAOImpl.getSolMessages";
 			logger.error(errMsg, e);
@@ -83,7 +85,8 @@ public class BoxDAOImpl extends GeneralDAO implements BoxDAO {
 
 	@Override
 	public Date getLastPartialSurrenderDate(String contractNumber) {
-		String sql = "SELECT MAX(b.createDate) FROM BoxMessage b WHERE b.contractNumber= :contractNumber AND b.majorType= :majorType AND b.type= :type"; 
+		String sql = "SELECT MAX(b.createDate) FROM BoxMessage b WHERE b.contractNumber= :contractNumber " + 
+				"AND b.majorType= :majorType AND b.type= :type"; 
 		Query query = jpaRepository.createQuery(sql);
 		query.setParameter("contractNumber", contractNumber);
 		query.setParameter("majorType", "someType");
@@ -95,7 +98,8 @@ public class BoxDAOImpl extends GeneralDAO implements BoxDAO {
 	public short getPartialSurrenderQuantityFromDate(String contractNumber, Date lastAnnualDate){
 		String sql = "select count(mess_type) as resultBigDecimal from BOX_MESSAGE " +
 	   			     "where contractno=? and major_type=? and mess_type='PartialSurrender' " + 
-	   			     "and trunc(create_date) >= TO_DATE(?,'YYYY-MM-DD') and trunc(create_date) <= TO_DATE(?,'YYYY-MM-DD')";
+	   			     "and trunc(create_date) >= TO_DATE(?,'YYYY-MM-DD') " +
+	   			     "and trunc(create_date) <= TO_DATE(?,'YYYY-MM-DD')";
 		Query nativeQuery = jpaRepository.createNativeQuery(sql);
 		nativeQuery.setParameter(1, contractNumber);
 		nativeQuery.setParameter(2, "someType");

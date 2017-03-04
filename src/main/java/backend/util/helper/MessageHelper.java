@@ -22,8 +22,7 @@ public class MessageHelper {
 		String string = null;
 		try {
 			string = bundle.getString(key);
-		} catch (MissingResourceException e) {
-		}
+		} catch (MissingResourceException e) { }
 		
 		if (string != null) {
 			if (messageParams != null) {
@@ -36,7 +35,7 @@ public class MessageHelper {
 	}
 	
 	public static String getMessageOrNull(String key, String[] messageParams) {
-		try{
+		try {
 			return getMessage(key, messageParams);
 		} catch(NullPointerException ex){
 			return null;
@@ -45,7 +44,7 @@ public class MessageHelper {
 	
 	protected static String putNumbersToBrackets(String value, int number) {
 		int index = value.indexOf("{}"); 
-		if(index != -1) {
+		if (index != -1) {
 			value = value.substring(0, index + 1) + number + value.substring(index + 1);
 			value = putNumbersToBrackets(value, ++number);
 		}

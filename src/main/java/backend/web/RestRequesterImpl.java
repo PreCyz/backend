@@ -11,8 +11,9 @@ import java.util.Properties;
 import org.apache.commons.io.IOUtils;
 
 import backend.dao.RestRequester;
+import static backend.util.BackendConstants.UTF8_CODING;
 
-public class RestRequesterImpl implements RestRequester{
+public class RestRequesterImpl implements RestRequester {
 	
 	private final int RESPONSE_FATAL_ERROR_CODE = -1;
 	
@@ -84,7 +85,7 @@ public class RestRequesterImpl implements RestRequester{
 	}
 
 	private String getServerResponse() throws IOException {
-		responseJson = IOUtils.toString(connection.getInputStream(), "UTF-8");
+		responseJson = IOUtils.toString(connection.getInputStream(), UTF8_CODING);
 		return responseJson;
 	}
 }

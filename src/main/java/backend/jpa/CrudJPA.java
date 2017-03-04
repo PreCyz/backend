@@ -19,7 +19,8 @@ public interface CrudJPA {
 	
 	void save(EntityManager entityManager, Object entity);
 	
-	<A> List<A> getListFromNamedQuery(EntityManager entityManager, Class<A> type, String queryName, Map<String, String> params);
+	<A> List<A> getListFromNamedQuery(EntityManager entityManager, Class<A> type, String queryName, 
+			Map<String, String> params);
 	
 	void delete(EntityManager entityManager, Object entity);
 }

@@ -11,9 +11,10 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import backend.exception.ApplicationUncheckedException;
 
-//Klasa tworzy całego poprawnego json'a. Jeśli trzeba dodatkowych opcji należy użyć odpowiednich features.
-//należy odpowiednio adnotować klasy do sparsowania, aby uzyskać żądany efekt (na tej samej zasadzie jak przy JAXB).
-//Jak adnotować odsyłam do tutoriala JacksonJsonProvider
+/** This class creates full json. If additional options are required, one has to use proper features.
+  * Objects to parse have to use proper annotations. in order to get requested output (the same way as in JXB)
+  * How to annotate? Find in JacksonJsonProvider tutorial.
+ */
 
 public class JacksonUtilJson {
 	
@@ -71,19 +72,19 @@ public class JacksonUtilJson {
 		}
 	}
 	
-	private static ObjectMapper createSerializationObjectMapper(SerializationFeatures ... features){
+	private static ObjectMapper createSerializationObjectMapper(SerializationFeatures ... features) {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(SerializationFeatures.NO_INDENT_OUTPUT.key(), SerializationFeatures.NO_INDENT_OUTPUT.value());
 		mapper.configure(SerializationFeatures.WRAP_ROOT.key(), SerializationFeatures.WRAP_ROOT.value());
-		if(notEmptyArray(features)){
-			for(SerializationFeatures feature : features){
+		if (notEmptyArray(features)) {
+			for (SerializationFeatures feature : features) {
 				mapper.configure(feature.key(), feature.value());
 			}
 		}
 		return mapper;
 	}
 	
-	private static boolean notEmptyArray(Object[] array){
+	private static boolean notEmptyArray(Object[] array) {
 		return array != null && array.length > 0; 
 	}
 	
@@ -99,9 +100,10 @@ public class JacksonUtilJson {
 	private static ObjectMapper createDeserializationObjectMapper(DeserializationFeatures ... features){
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(DeserializationFeatures.UNWRAP_ROOT.key(), DeserializationFeatures.UNWRAP_ROOT.value());
-		mapper.configure(DeserializationFeatures.ACCEPT_SINGLE_VALUE_AS_ARRAY.key(), DeserializationFeatures.ACCEPT_SINGLE_VALUE_AS_ARRAY.value());
-		if(notEmptyArray(features)){
-			for(DeserializationFeatures feature : features){
+		mapper.configure(DeserializationFeatures.ACCEPT_SINGLE_VALUE_AS_ARRAY.key(), 
+				DeserializationFeatures.ACCEPT_SINGLE_VALUE_AS_ARRAY.value());
+		if (notEmptyArray(features)) {
+			for (DeserializationFeatures feature : features) {
 				mapper.configure(feature.key(), feature.value());
 			}
 		}

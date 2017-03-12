@@ -19,8 +19,13 @@ public class DatabaseConfig {
 	@Autowired
 	private Environment environment;
 	
-	@Value("${mysqlDataSourceName}")
-	private String mysqlDataSourceName;
+	@Value("${dbDataSourceName}")
+	private String dbDataSourceName;
+	
+	@Bean
+	public String databasePlatform() {
+		return environment.getProperty("databasePlatform");
+	}
 	
 	@Bean
 	public boolean generateDdl() {
@@ -34,8 +39,8 @@ public class DatabaseConfig {
 	
 	@Bean
 	@Required
-	public DataSource mySqlDataSource() {
-		return jndiLookup(mysqlDataSourceName);
+	public DataSource dbDataSource() {
+		return jndiLookup(dbDataSourceName);
 	}
 
 	private DataSource jndiLookup(String dataSourceName) {

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Required;
@@ -11,26 +12,40 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+import backend.util.helper.StringHelper;
+
 @Configuration(value = "databaseConfig")
 public class TestDatabaseConfig extends DatabaseConfig {
+	
+	private Properties connectionProperties;
+	
+	@PostConstruct
+	private void init() {
+		connectionProperties = connectionProperties();
+	}
 	
 	@Override
 	@Bean 
 	public boolean generateDdl() {
-		return true;
+		return StringHelper.extractBoolean(connectionProperties.getProperty("generateDdl"));
 	}
 	
 	@Override
 	@Bean
 	public boolean showSql() {
-		return false;
+		return StringHelper.extractBoolean(connectionProperties.getProperty("showSql"));
+	}
+	
+	@Override
+	@Bean
+	public String databasePlatform() {
+		return connectionProperties.getProperty("databasePlatform");
 	}
 	
 	@Override
 	@Bean
 	@Required
-	public DataSource mySqlDataSource() {
-		Properties connectionProperties = connectionProperties();
+	public DataSource dbDataSource() {
 		String username = connectionProperties.getProperty("username");
 		String password = connectionProperties.getProperty("password");
 		String url = connectionProperties.getProperty("url");

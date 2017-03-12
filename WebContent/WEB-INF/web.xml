@@ -90,8 +90,12 @@
 	</servlet-mapping>
 	
 	<context-param>
-		<param-name>mysqlDataSourceName</param-name>
+		<param-name>dbDataSourceName</param-name>
 		<param-value>jdbc/MySql</param-value>
+	</context-param>
+	<context-param>
+		<param-name>databasePlatform</param-name>
+		<param-value>org.eclipse.persistence.platform.database.MySQLPlatform</param-value>
 	</context-param>
 	<resource-ref>
 		<description>MySql homeDB connection, schema springDB</description>

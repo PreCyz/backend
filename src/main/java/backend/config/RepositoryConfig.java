@@ -31,7 +31,7 @@ public class RepositoryConfig {
 	@Bean
 	public AuthenticationDAO authenticationDao() {
 		AuthenticationDAOImpl dao = new AuthenticationDAOImpl();
-		dao.setDataSource(databaseConfig.mySqlDataSource());
+		dao.setDataSource(databaseConfig.dbDataSource());
 		return dao;
 	}
 	

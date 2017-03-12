@@ -26,14 +26,13 @@ public class JpaConfig {
 	private DatabaseConfig databaseConfig;
 	
 	@Bean
-	@DependsOn(value = "mySqlDataSource")
+	@DependsOn(value = "dbDataSource")
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 	    LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 	    factory.setJpaVendorAdapter(jpaVendorAdapter());
-	    factory.setDataSource(databaseConfig.mySqlDataSource());
+	    factory.setDataSource(databaseConfig.dbDataSource());
 	    factory.setJpaProperties(jpaProperties());
 	    factory.setPackagesToScan("backend");
-	    //factory.afterPropertiesSet();
 	    return factory;
 	}
 
@@ -42,7 +41,7 @@ public class JpaConfig {
 		EclipseLinkJpaVendorAdapter vendorAdapter = new EclipseLinkJpaVendorAdapter();
 	    vendorAdapter.setGenerateDdl(databaseConfig.generateDdl());
 	    vendorAdapter.setShowSql(databaseConfig.showSql());
-	    vendorAdapter.setDatabasePlatform("org.eclipse.persistence.platform.database.MySQLPlatform");
+	    vendorAdapter.setDatabasePlatform(databaseConfig.databasePlatform());
 		return vendorAdapter;
 	}
 	

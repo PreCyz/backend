@@ -3,7 +3,7 @@ package backend.jpa.converter;
 import java.io.UnsupportedEncodingException;
 
 import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+//import javax.persistence.Converter;
 
 import static backend.util.BackendConstants.UTF8_CODING;
 

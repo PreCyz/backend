@@ -26,6 +26,12 @@ public class LogEvent extends AutoIncrementEntry {
 	@Column(name = "DETAILS", nullable = false, length = 500)
 	private String eventDetails;
 	
+	@Column(name = "CLASS_NAME", nullable = false, length = 500)
+	private String className;
+	
+	@Column(name = "EXCEPTION_DETAILS", nullable = true, length = 1000)
+	private String exceptionDetails;
+	
 	@ManyToOne
 	@JoinColumn(name = "LOGGER_LOGIN_ID", nullable = false, updatable = true, insertable = true)
 	private LogLogin logLogin;
@@ -58,6 +64,22 @@ public class LogEvent extends AutoIncrementEntry {
 		this.eventDetails = eventDetails;
 	}
 	
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	public String getExceptionDetails() {
+		return exceptionDetails;
+	}
+
+	public void setExceptionDetails(String exceptionDetails) {
+		this.exceptionDetails = exceptionDetails;
+	}
+
 	@Override
 	public void update(Entry entry) {
 		super.update(entry);
@@ -65,29 +87,45 @@ public class LogEvent extends AutoIncrementEntry {
 		this.eventDetails = logEvent.getEventDetails();
 		this.logDate = logEvent.getLogDate();
 		this.logLogin = logEvent.getLoggerLogin();
+		this.exceptionDetails = logEvent.getExceptionDetails();
+		this.className = logEvent.getClassName();
 	}
 
+	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = super.hashCode();
+		int result = 1;
+		result = prime * result + ((className == null) ? 0 : className.hashCode());
 		result = prime * result + ((eventDetails == null) ? 0 : eventDetails.hashCode());
+		result = prime * result + ((exceptionDetails == null) ? 0 : exceptionDetails.hashCode());
 		result = prime * result + ((logDate == null) ? 0 : logDate.hashCode());
 		result = prime * result + ((logLogin == null) ? 0 : logLogin.hashCode());
 		return result;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
+		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		LogEvent other = (LogEvent) obj;
+		if (className == null) {
+			if (other.className != null)
+				return false;
+		} else if (!className.equals(other.className))
+			return false;
 		if (eventDetails == null) {
 			if (other.eventDetails != null)
 				return false;
 		} else if (!eventDetails.equals(other.eventDetails))
+			return false;
+		if (exceptionDetails == null) {
+			if (other.exceptionDetails != null)
+				return false;
+		} else if (!exceptionDetails.equals(other.exceptionDetails))
 			return false;
 		if (logDate == null) {
 			if (other.logDate != null)
@@ -101,5 +139,5 @@ public class LogEvent extends AutoIncrementEntry {
 			return false;
 		return true;
 	}
-	
+
 }

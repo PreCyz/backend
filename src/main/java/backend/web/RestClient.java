@@ -36,14 +36,10 @@ import java.net.URL;
 		    .create();
 	    byte[] is = client.responseAsByteArray());
  */
-public class WebClient {
+public class RestClient {
 	
 	private static final String UTF8 = "UTF-8";
 	private static final String COOKIE_KEY = "Set-Cookie";
-	
-	public static enum Method {
-		GET, POST, HEAD, OPTIONS, PUT, DELETE, TRACE
-	}
 
 	private final HttpURLConnection httpConn;
 	private String cookies;
@@ -77,8 +73,10 @@ public class WebClient {
 	}
 	
 	private boolean isValidResponseCode() {
-		return responseCode == HttpURLConnection.HTTP_OK || responseCode == HttpURLConnection.HTTP_CREATED 
-				|| responseCode == HttpURLConnection.HTTP_NO_CONTENT || responseCode == HttpURLConnection.HTTP_ACCEPTED;
+		return responseCode == HttpURLConnection.HTTP_OK || 
+				responseCode == HttpURLConnection.HTTP_CREATED || 
+				responseCode == HttpURLConnection.HTTP_NO_CONTENT || 
+				responseCode == HttpURLConnection.HTTP_ACCEPTED;
 	}
 	
 	private byte[] inputStreamToByteArray(InputStream is) throws IOException{
@@ -113,17 +111,17 @@ public class WebClient {
 	}
 	
 	public String get() throws ProtocolException, IOException {
-		this.httpConn.setRequestMethod(Method.GET.name());
+		this.httpConn.setRequestMethod(RestMethod.GET);
 		invoke();
 		return responseString;
 	}
 	
 	public String post(String json) throws ProtocolException, IOException {
-		return invoke(Method.POST, json);
+		return invoke(RestMethod.POST, json);
 	}
 
-	public String invoke(Method requestMethod, String json) throws ProtocolException, IOException {
-		this.httpConn.setRequestMethod(requestMethod.name());
+	public String invoke(String requestMethod, String json) throws ProtocolException, IOException {
+		this.httpConn.setRequestMethod(requestMethod);
 		this.httpConn.setRequestProperty("Content-Type", "application/json");
 		this.httpConn.setRequestProperty("charset", UTF8);
 		this.httpConn.setRequestProperty("Accept", "application/json");
@@ -149,7 +147,7 @@ public class WebClient {
 		return responseByteArray;
 	}
 
-	private WebClient(Builder builder) throws MalformedURLException, IOException {
+	private RestClient(Builder builder) throws MalformedURLException, IOException {
 		this.httpConn = builder.httpConn;
 	}
 
@@ -163,9 +161,9 @@ public class WebClient {
 	}
 
 	public static class Builder {
-		private static final String LINE_FEED = "\r\n";
-
-		private static final Method DEFAULT_METHOD = Method.POST;
+		
+		private static final String LINE_FEED = String.format("\r%n");
+		private static final String DEFAULT_METHOD = RestMethod.POST;
 
 		private HttpURLConnection httpConn;
 		private final URL requestUrl;
@@ -181,7 +179,7 @@ public class WebClient {
 			httpConn.setDoOutput(true);
 			httpConn.setUseCaches(false);
 			httpConn.setInstanceFollowRedirects(false);
-			httpConn.setRequestMethod(DEFAULT_METHOD.name());
+			httpConn.setRequestMethod(DEFAULT_METHOD);
 		}
 
 		public Builder cookie(String name, String value) {
@@ -190,8 +188,8 @@ public class WebClient {
 			return this;
 		}
 
-		public Builder method(Method requestMethod) throws ProtocolException {
-			httpConn.setRequestMethod(requestMethod.name());
+		public Builder method(String requestMethod) throws ProtocolException {
+			httpConn.setRequestMethod(requestMethod);
 			return this;
 		}
 
@@ -311,14 +309,14 @@ public class WebClient {
 		    return this;
 		}
 
-		public WebClient create() throws IOException {
+		public RestClient create() throws IOException {
 			if (writer != null) {
 				writer.append(LINE_FEED).flush();
 				String content = String.format("--%s--", boundary);
 				writer.append(content).append(LINE_FEED);
 				writer.close();
 			}
-			return new WebClient(this);
+			return new RestClient(this);
 		}
 	}
 }

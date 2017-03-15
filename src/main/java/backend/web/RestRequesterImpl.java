@@ -10,7 +10,6 @@ import java.util.Properties;
 
 import org.apache.commons.io.IOUtils;
 
-import backend.dao.RestRequester;
 import static backend.util.BackendConstants.UTF8_CODING;
 
 public class RestRequesterImpl implements RestRequester {
@@ -53,7 +52,7 @@ public class RestRequesterImpl implements RestRequester {
 		connection.setDoOutput(true);
 		connection.setUseCaches(false);
 		connection.setInstanceFollowRedirects(false);
-		connection.setRequestMethod(DEFAULT_METHOD.name());
+		connection.setRequestMethod(RestMethod.DEFAULT_METHOD);
 		connection.setRequestProperty("Content-Type", "application/json");
 		connection.setRequestProperty("charset", "utf-8");
 		connection.setRequestProperty("Accept", "application/json");
@@ -77,15 +76,21 @@ public class RestRequesterImpl implements RestRequester {
 	
 	private void processRequestJson() throws IOException{
 		if(restConfigBean.getRequestJson() != null){
-			DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
-			wr.writeBytes(restConfigBean.getRequestJson());
-			wr.flush();
-			wr.close();
+			DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream());
+			outputStream.writeBytes(restConfigBean.getRequestJson());
+			outputStream.flush();
+			outputStream.close();
 		}
 	}
 
 	private String getServerResponse() throws IOException {
 		responseJson = IOUtils.toString(connection.getInputStream(), UTF8_CODING);
 		return responseJson;
+	}
+
+	@Override
+	public String getResponseSessionId() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

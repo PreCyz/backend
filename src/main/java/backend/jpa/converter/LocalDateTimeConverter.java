@@ -10,19 +10,24 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 @Converter(autoApply = true)
-public class DateToLocalDateTimeConverter implements AttributeConverter<LocalDateTime, Date> {
+public class LocalDateTimeConverter implements AttributeConverter<LocalDateTime, Date> {
 
 	@Override
 	public Date convertToDatabaseColumn(LocalDateTime localDateTime) {
+		if (localDateTime == null) {
+			return null;
+		}
 		Date in = new Date();
 		LocalDateTime ldt = LocalDateTime.ofInstant(in.toInstant(), ZoneId.systemDefault());
 		return Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
 	}
 
 	@Override
-	public LocalDateTime convertToEntityAttribute(Date Date) {
-		Date input = new Date();
-		Instant instant = input.toInstant();
+	public LocalDateTime convertToEntityAttribute(Date date) {
+		if (date == null) {
+			return null; 
+		}
+		Instant instant = date.toInstant();
 		ZonedDateTime zdt = instant.atZone(ZoneId.systemDefault());
 		return zdt.toLocalDateTime();
 	}

@@ -7,5 +7,5 @@
 	<!-- Converters -->
 	<converter class="backend.jpa.converter.BooleanToStringConverter"></converter>
 	<!-- <converter class="backend.jpa.converter.BoxMessageResponseConverter"></converter> -->
-	<converter class="backend.jpa.converter.DateToLocalDateTimeConverter"></converter>
+	<converter class="backend.jpa.converter.LocalDateTimeConverter"></converter>
 </entity-mappings>

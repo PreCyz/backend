@@ -5,7 +5,7 @@
 				 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
 	
 	<!-- Converters -->
-	<converter class="backend.jpa.converter.BooleanToStringConverter"></converter>
+	<converter class="backend.jpa.converter.BooleanConverter"></converter>
 	<!-- <converter class="backend.jpa.converter.BoxMessageResponseConverter"></converter> -->
 	<converter class="backend.jpa.converter.LocalDateTimeConverter"></converter>
 </entity-mappings>

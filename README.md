@@ -14,12 +14,12 @@ Basic architecture is:
 	| L | [REST] | A |      | V |      | O |  [JDBC] | A |
 	| D |        | D |      | I |       ---          | B |
 	 ---         | E |      | C |                    | A |
-					---       | E |					   | S |
-							   | S |                    | E |
-								---						   | S |
-           ------------------------------------       ---
-           |              SPRING              |
-           ------------------------------------
+	              ---       | E |                    | S |
+	                        | S |                    | E |
+	                         ---                     | S |
+	        ------------------------------------      ---
+	        |              SPRING              |
+	        ------------------------------------
 					 
 There is facade which is entry point from the world. Facade contains services which class DAO. The DAO tier hits 
 the database and returns data.

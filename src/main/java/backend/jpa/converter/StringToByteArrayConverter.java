@@ -8,7 +8,7 @@ import javax.persistence.AttributeConverter;
 import static backend.util.BackendConstants.UTF8_CODING;
 
 //@Converter(autoApply = false)
-public class BoxMessageResponseConverter implements AttributeConverter<String, byte[]> {
+public class StringToByteArrayConverter implements AttributeConverter<String, byte[]> {
 
 	@Override
 	public byte[] convertToDatabaseColumn(String blobMessage) {

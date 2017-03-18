@@ -8,16 +8,16 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import backend.jpa.converter.BoxMessageResponseConverter;
+import backend.jpa.converter.StringToByteArrayConverter;
 
 public class BoxMessageResponseConverterUnitTest {
 	
-	private BoxMessageResponseConverter converter;
+	private StringToByteArrayConverter converter;
 	private final String SOME_MESSAGE = "SomeMessage"; 
 
 	@Before
 	public void setUp() throws Exception {
-		converter = new BoxMessageResponseConverter();
+		converter = new StringToByteArrayConverter();
 	}
 
 	@After

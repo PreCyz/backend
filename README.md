@@ -1,7 +1,7 @@
 # backend
-Example of spring (java config only), jpa, apache-cxf with (jaxrs and jaxws) in one place.
+Example of *spring* (java config only), *jpa, apache-cxf* with (*jaxrs* and *jaxws*) in one place.
 
-This is an example of application that gathering in one place frameworks like: Apache CXF, Spring, JPA. 
+This is an example of application that gathering in one place frameworks like: *Apache CXF, Spring, JPA*. 
 All config (where I could) is done "java config" way. The idea behind this app is basic backend application, 
 which on one end has connection to database and on the other end has WS and REST connection from world. 
 

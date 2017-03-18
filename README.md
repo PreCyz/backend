@@ -17,9 +17,9 @@ Basic architecture is:
 	              ---       | E |                    | S |
 	                        | S |                    | E |
 	                         ---                     | S |
-	        ------------------------------------      ---
-	        |              SPRING              |
-	        ------------------------------------
+	             ----------------------------------   ---
+	             |            SPRING              |
+	             ----------------------------------
 					 
 There is facade which is entry point from the world. Facade contains services which class DAO. The DAO tier hits 
 the database and returns data.

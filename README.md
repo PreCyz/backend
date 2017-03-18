@@ -7,17 +7,17 @@ which on one end has connection to database and on the other end has WS and REST
 
 Basic architecture is:
 
- ___          ___        ___                      ___
-| W |        | F |      | S |       ___          | D |
-| O | [WS]   | A |      | E |      | D |  [JPA]  | A |
-| R | <==>   | C | <==> | R | <==> | A |   <==>  | T |
-| L | [REST] | A |      | V |      | O |  [JDBC] | A |
-| D |        | D |      | I |       ---          | B |
- ---         | E |      | C |                    | A |
-              ---       | E |                    | S |
-                        | S |                    | E |
-                         ---                     | S |
-           ------------------------------------   ---
+	 ___          ___        ___                      ___
+	| W |        | F |      | S |       ___          | D |
+	| O | [WS]   | A |      | E |      | D |  [JPA]  | A |
+	| R | <==>   | C | <==> | R | <==> | A |   <==>  | T |
+	| L | [REST] | A |      | V |      | O |  [JDBC] | A |
+	| D |        | D |      | I |       ---          | B |
+	 ---         | E |      | C |                    | A |
+					---       | E |					   | S |
+							   | S |                    | E |
+								---						   | S |
+           ------------------------------------       ---
            |              SPRING              |
            ------------------------------------
 					 

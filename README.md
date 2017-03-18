@@ -21,5 +21,5 @@ Basic architecture is:
 	             |            SPRING              |
 	             ----------------------------------
 					 
-There is facade which is entry point from the world. Facade contains services which class DAO. The DAO tier hits 
-the database and returns data.
+There is facade which is entry point from the world. Facade contains services which call class DAO. 
+The DAO hits the database.
